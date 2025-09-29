@@ -6,8 +6,10 @@ type SignInPayload = z.infer<typeof signInSchema>;
 type SignUpPayload = z.infer<typeof signUpSchema>;
 
 interface SignInResponse {
-    token: string;
+    status: string;
     message: string;
+    user: string;
+    token: string;
 }
 
 interface SignUpResponse {
@@ -18,7 +20,7 @@ interface SignUpResponse {
 
 export const signUpService = async (data: SignUpPayload): Promise<SignUpResponse> => {
     try {
-        const response = await apiClient.post<SignUpResponse>('/sign-up', data);
+        const response = await apiClient.post<SignUpResponse>('/auth/sign-up', data);
         return response.data;
     } catch (error) {
         throw error;
@@ -28,7 +30,7 @@ export const signUpService = async (data: SignUpPayload): Promise<SignUpResponse
 export const signInService = async (data: SignInPayload): Promise<SignInResponse> => {
     try {
         // temporary endpoint api
-        const response = await apiClient.post<SignInResponse>('/login', data);
+        const response = await apiClient.post<SignInResponse>('/auth/sign-in', data);
         return response.data;
     } catch (error) {
         throw error;

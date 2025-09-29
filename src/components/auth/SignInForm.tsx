@@ -19,7 +19,7 @@ import { useApi } from "@/hooks/useApi"
 import { signInService } from "@/services/auth.service"
 import { Link, useNavigate } from "react-router"
 import { toast } from "sonner"
-import { signInSchema } from "@/schemas/auth.schema";
+import { signInSchema } from "@/schemas/auth.schema"
 import { Loader2 } from "lucide-react"
 // import { signInSchema, type SignInPayload } from "@/schemas/auth.schema";
 // 
@@ -42,6 +42,7 @@ export default function SignInForm({ className, ...props }: React.ComponentProps
             toast.error(response.error || "an unknown error occurred.");
             return;
         }
+        console.log(response);
 
         if (response.data && response.data.token) {
             const token = response.data.token
@@ -53,8 +54,8 @@ export default function SignInForm({ className, ...props }: React.ComponentProps
                 navigate('/', { replace: true })
             }, 1050)
         } else {
-            toast.error('an unknown error occurred')
-            // toast.error(response.error || 'an unknown error occurred')
+            toast.error(response.error || 'an unknown error occurred')
+            // toast.error('an unknown error occurred')
         }
     }
 
