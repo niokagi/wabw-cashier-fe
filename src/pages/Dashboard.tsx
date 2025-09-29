@@ -1,0 +1,127 @@
+import { SidebarLeft } from "@/components/sidebar-left"
+import { SidebarRight } from "@/components/sidebar-right"
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbList,
+    BreadcrumbPage,
+} from "@/components/ui/breadcrumb"
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import {
+    SidebarInset,
+    SidebarProvider,
+    SidebarTrigger,
+} from "@/components/ui/sidebar"
+import { Skeleton } from "@/components/ui/skeleton"
+
+export default function Dashboard() {
+    const dummyData = [
+        {
+            id: 1,
+            title: "Classic Bruschetta",
+            desc: "Grilled bread topped with fresh tomatoes, garlic, basil, and a hint of balsamic glaze.",
+            price: 8.99,
+            category: "Appetizer"
+        },
+        {
+            id: 2,
+            title: "Spaghetti Carbonara",
+            desc: "A creamy pasta dish made with egg, hard cheese, cured pork, and black pepper.",
+            price: 15.50,
+            category: "Main Course"
+        },
+        {
+            id: 3,
+            title: "Grilled Ribeye Steak",
+            desc: "A 12oz prime ribeye, seasoned and grilled to perfection, served with mashed potatoes.",
+            price: 29.95,
+            category: "Main Course"
+        },
+        {
+            id: 4,
+            title: "Margherita Pizza",
+            desc: "Classic Neapolitan pizza with San Marzano tomatoes, fresh mozzarella, and basil.",
+            price: 14.00,
+            category: "Main Course"
+        },
+        {
+            id: 5,
+            title: "Lemon Herb Salmon",
+            desc: "Pan-seared salmon fillet with a lemon-dill sauce, served with quinoa and asparagus.",
+            price: 22.00,
+            category: "Main Course"
+        },
+        {
+            id: 6,
+            title: "Chicken Caesar Salad",
+            desc: "Crisp romaine lettuce, parmesan cheese, croutons, and Caesar dressing, topped with grilled chicken.",
+            price: 13.75,
+            category: "Salad"
+        },
+        {
+            id: 7,
+            title: "Chocolate Lava Cake",
+            desc: "Warm chocolate cake with a molten center, served with a scoop of vanilla ice cream.",
+            price: 9.50,
+            category: "Dessert"
+        },
+        {
+            id: 8,
+            title: "New York Cheesecake",
+            desc: "Creamy and dense cheesecake with a graham cracker crust, topped with a strawberry compote.",
+            price: 9.00,
+            category: "Dessert"
+        },
+    ]
+
+    return (
+        <SidebarProvider>
+            <SidebarLeft />
+            <SidebarInset>
+                <header className="bg-background sticky top-0 flex h-14 shrink-0 items-center gap-2 z-20">
+                    <div className="flex flex-1 items-center gap-2 px-3">
+                        <SidebarTrigger />
+                        <Separator
+                            orientation="vertical"
+                            className="mr-2 data-[orientation=vertical]:h-4"
+                        />
+                        <Breadcrumb>
+                            <BreadcrumbList>
+                                <BreadcrumbItem>
+                                    <BreadcrumbPage className="line-clamp-1">
+                                        Dashboard starter template
+                                    </BreadcrumbPage>
+                                </BreadcrumbItem>
+                            </BreadcrumbList>
+                        </Breadcrumb>
+                    </div>
+                </header>
+                {/* work here (main wrapper) */}
+                <div className="flex flex-1 flex-col gap-4">
+                    <div className="product-card-container p-7 sm:p-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+                        {dummyData.map(data => (
+                            <Card className="border-none gap-3" key={data.title}>
+                                <CardHeader>
+                                    <Skeleton className="h-[9rem] sm:h-[7rem] w-[100%] rounded-lg z-[0  ]" />
+                                    <CardTitle className="mt-3">{data.title}</CardTitle>
+                                    {/* <CardDescription>Card Description</CardDescription> */}
+                                    {/* <CardAction>Card Action</CardAction> */}
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-xs text-gray-500 truncate">{data.desc}</p>
+                                </CardContent>
+                                <CardFooter>
+                                    <p>${data.price}</p>
+                                </CardFooter>
+                            </Card>
+                        ))}
+                    </div>
+                    {/* <div className="bg-muted/50 mx-auto h-24 w-full max-w-3xl rounded-xl" /> */}
+                    {/* <div className="bg-muted/50 mx-auto h-[100dvh] w-full max-w-3xl rounded-xl" /> */}
+                </div>
+            </SidebarInset>
+            <SidebarRight />
+        </SidebarProvider>
+    )
+}
