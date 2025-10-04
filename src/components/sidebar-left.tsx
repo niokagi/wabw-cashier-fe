@@ -111,7 +111,7 @@ export function SidebarLeft({
     <Sidebar className="border-r-0 z-20" {...props}>
       <SidebarHeader className="pt-6">
         {/* <TeamSwitcher teams={data.teams} /> */}
-        <div className="flex gap-2 items-center justify-center px-2">
+        <div className="flex gap-2 items-center sm:justify-center px-2">
           <span className="truncate font-medium text-[1.05rem]">{"< "}{data.teams[0].name}{" />"}</span>
         </div>
         <Separator  />
