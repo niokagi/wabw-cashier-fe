@@ -34,13 +34,13 @@ const data = {
   ],
   navMain: [
     {
-      title: "Home",
+      title: "Menu",
       url: "#",
       icon: Home,
       isActive: true,
     },
     {
-      title: "Dashboard",
+      title: "Dashboard (data master)",
       url: "#",
       icon: Inbox,
       badge: "10",
@@ -108,11 +108,11 @@ export function SidebarLeft({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="border-r-0" {...props}>
+    <Sidebar className="border-r-0 z-20" {...props}>
       <SidebarHeader className="pt-6">
         {/* <TeamSwitcher teams={data.teams} /> */}
-        <div className="flex gap-2 items-center px-2">
-          <span className="truncate font-medium">{"< "}{data.teams[0].name}{" />"}</span>
+        <div className="flex gap-2 items-center justify-center px-2">
+          <span className="truncate font-medium text-[1.05rem]">{"< "}{data.teams[0].name}{" />"}</span>
         </div>
         <Separator  />
         <Separator  />

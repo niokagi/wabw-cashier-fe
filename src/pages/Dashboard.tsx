@@ -21,7 +21,7 @@ export default function Dashboard() {
         <SidebarProvider>
             <SidebarLeft />
             <SidebarInset>
-                <header className="bg-background sticky top-0 flex h-20 shrink-0 items-center gap-2 z-20">
+                <header className="bg-background sticky top-0 flex h-20 shrink-0 items-center gap-2 z-10 shadow-xs">
                     <div className="flex flex-1 items-center gap-2 px-3">
                         <SidebarTrigger />
                         <Separator
@@ -42,7 +42,7 @@ export default function Dashboard() {
                     </div>
                 </header>
                 {/* products list */}
-                <section>
+                <section className="max-w-full">
                     <FieldChoiceCard />
                     <Separator />
                     <ProductsList />

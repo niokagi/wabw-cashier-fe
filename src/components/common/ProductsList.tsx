@@ -62,10 +62,10 @@ export default function ProductsList() {
     ]
 
     return (<>
-        <div className="flex flex-1 flex-col gap-4">
-            <div className="product-card-container p-7 sm:p-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="flex flex-1 flex-col gap-4 w-full">
+            <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {dummyData.map(data => (
-                    <Card className="border-none gap-3" key={data.title}>
+                    <Card className="gap-3 border-none" key={data.title}>
                         <CardHeader>
                             <Skeleton className="h-[9rem] sm:h-[7rem] w-[100%] rounded-lg z-[0]" />
                             <CardTitle className="mt-3">{data.title}</CardTitle>
@@ -81,8 +81,6 @@ export default function ProductsList() {
                     </Card>
                 ))}
             </div>
-            {/* <div className="bg-muted/50 mx-auto h-24 w-full max-w-3xl rounded-xl" /> */}
-            {/* <div className="bg-muted/50 mx-auto h-[100dvh] w-full max-w-3xl rounded-xl" /> */}
         </div>
     </>)
 }
