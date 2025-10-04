@@ -30,7 +30,7 @@
     // shadcn
     // note: deprecated for ts ver 7.0
     // to be fix
-    "baseUrl": ".",
+    // "baseUrl": ".",
     "paths": {
       "@/*": [
         "./src/*"

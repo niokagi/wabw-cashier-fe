@@ -2,26 +2,26 @@ import * as React from "react"
 import {
   BookText,
   Command,
+  FileText,
   Home,
   Inbox,
   MessageCircleQuestion,
   Presentation,
-  Search,
   Settings2,
-  Trash2,
   Users,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { TeamSwitcher } from "@/components/team-switcher"
+// import { NavSecondary } from "@/components/nav-secondary"
 import {
   Sidebar,
   SidebarContent,
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
-import { NavWorkspaces } from "./nav-workspaces"
+import { NavSecondary } from "./nav-secondary"
+import { Separator } from "@radix-ui/react-separator"
+// import { NavWorkspaces } from "./nav-workspaces"
 
 // This is sample data.
 const data = {
@@ -31,23 +31,8 @@ const data = {
       logo: Command,
       plan: "Enterprise",
     },
-    // {
-    //   name: "Acme Corp.",
-    //   logo: AudioWaveform,
-    //   plan: "Startup",
-    // },
-    // {
-    //   name: "Evil Corp.",
-    //   logo: Command,
-    //   plan: "Free",
-    // },
   ],
   navMain: [
-    {
-      title: "Search",
-      url: "#",
-      icon: Search,
-    },
     {
       title: "Home",
       url: "#",
@@ -55,33 +40,31 @@ const data = {
       isActive: true,
     },
     {
-      title: "Inbox",
+      title: "Dashboard",
       url: "#",
       icon: Inbox,
       badge: "10",
     },
     {
-      title: "Cahiers",
+      // > admin
+      title: "Cashiers List",
       url: "#",
       icon: Users,
       badge: "10",
     },
+    {
+      // > admin
+      title: "Reports",
+      url: "#",
+      icon: FileText,
+      badge: "10",
+    },
   ],
   navSecondary: [
-    // {
-    //   title: "Calendar",
-    //   url: "#",
-    //   icon: Calendar,
-    // },
     {
       title: "Settings",
       url: "#",
       icon: Settings2,
-    },
-    {
-      title: "Trash",
-      url: "#",
-      icon: Trash2,
     },
     {
       title: "Help",
@@ -126,14 +109,18 @@ export function SidebarLeft({
 }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar className="border-r-0" {...props}>
-      <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+      <SidebarHeader className="pt-6">
+        {/* <TeamSwitcher teams={data.teams} /> */}
+        <div className="flex gap-2 items-center px-2">
+          <span className="truncate font-medium">{"< "}{data.teams[0].name}{" />"}</span>
+        </div>
+        <Separator  />
         <NavMain items={data.navMain} />
       </SidebarHeader>
       <SidebarContent>
-        {/* <NavFavorites favorites={data.favorites} />
-        <NavWorkspaces workspaces={data.workspaces} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" /> */}
+        {/* <NavFavorites favorites={data.favorites} /> */}
+        {/* <NavWorkspaces workspaces={data.workspaces} /> */}
+        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
