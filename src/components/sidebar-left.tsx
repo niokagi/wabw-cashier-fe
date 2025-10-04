@@ -9,6 +9,7 @@ import {
   Search,
   Settings2,
   Trash2,
+  Users,
 } from "lucide-react"
 
 import { NavFavorites } from "@/components/nav-favorites"
@@ -63,6 +64,12 @@ const data = {
       title: "Inbox",
       url: "#",
       icon: Inbox,
+      badge: "10",
+    },
+    {
+      title: "Cahiers",
+      url: "#",
+      icon: Users,
       badge: "10",
     },
   ],

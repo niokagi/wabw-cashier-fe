@@ -7,14 +7,12 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
 } from "@/components/ui/breadcrumb"
-import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
 import {
     SidebarInset,
     SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { Skeleton } from "@/components/ui/skeleton"
 
 export default function Dashboard() {
 
@@ -34,14 +32,13 @@ export default function Dashboard() {
                             <BreadcrumbList>
                                 <BreadcrumbItem>
                                     <BreadcrumbPage className="line-clamp-1">
-                                        Dashboard starter template
+                                        Cashier
                                     </BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>
                     </div>
                 </header>
-                {/* work here (main wrapper) */}
                 {/* products list */}
                 <ProductsList />
                 {/*  */}
