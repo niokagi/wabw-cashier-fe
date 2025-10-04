@@ -12,7 +12,6 @@ import {
   Users,
 } from "lucide-react"
 
-import { NavFavorites } from "@/components/nav-favorites"
 import { NavMain } from "@/components/nav-main"
 import { NavSecondary } from "@/components/nav-secondary"
 import { TeamSwitcher } from "@/components/team-switcher"
@@ -49,11 +48,6 @@ const data = {
       url: "#",
       icon: Search,
     },
-    // {
-    //   title: "Ask AI",
-    //   url: "#",
-    //   icon: Sparkles,
-    // },
     {
       title: "Home",
       url: "#",

@@ -28,6 +28,8 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
     // shadcn
+    // note: deprecated for ts ver 7.0
+    // to be fix
     "baseUrl": ".",
     "paths": {
       "@/*": [

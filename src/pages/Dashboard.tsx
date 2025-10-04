@@ -1,4 +1,5 @@
 import ProductsList from "@/components/common/ProductsList"
+import SearchBar from "@/components/common/SearchBar"
 import { SidebarLeft } from "@/components/sidebar-left"
 import { SidebarRight } from "@/components/sidebar-right"
 import {
@@ -15,8 +16,6 @@ import {
 } from "@/components/ui/sidebar"
 
 export default function Dashboard() {
-
-
     return (
         <SidebarProvider>
             <SidebarLeft />
@@ -31,8 +30,8 @@ export default function Dashboard() {
                         <Breadcrumb>
                             <BreadcrumbList>
                                 <BreadcrumbItem>
-                                    <BreadcrumbPage className="line-clamp-1">
-                                        Cashier
+                                    <BreadcrumbPage>
+                                        <SearchBar />
                                     </BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
