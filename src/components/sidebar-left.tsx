@@ -115,6 +115,8 @@ export function SidebarLeft({
           <span className="truncate font-medium">{"< "}{data.teams[0].name}{" />"}</span>
         </div>
         <Separator  />
+        <Separator  />
+        <Separator  />
         <NavMain items={data.navMain} />
       </SidebarHeader>
       <SidebarContent>

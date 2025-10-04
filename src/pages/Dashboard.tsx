@@ -1,5 +1,6 @@
 import ProductsList from "@/components/common/ProductsList"
 import SearchBar from "@/components/common/SearchBar"
+import { FieldChoiceCard } from "@/components/reusable/FieldChoiceCard"
 import { SidebarLeft } from "@/components/sidebar-left"
 import { SidebarRight } from "@/components/sidebar-right"
 import {
@@ -41,7 +42,11 @@ export default function Dashboard() {
                     </div>
                 </header>
                 {/* products list */}
-                <ProductsList />
+                <section>
+                    <FieldChoiceCard />
+                    <Separator />
+                    <ProductsList />
+                </section>
                 {/*  */}
             </SidebarInset>
             <SidebarRight />

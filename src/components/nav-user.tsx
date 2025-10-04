@@ -38,7 +38,7 @@ export function NavUser() {
   // const fallbackInitial = user.email ? user.email[0].toUpperCase() : 'U'
   
   return (
-    <SidebarMenu>
+    <SidebarMenu className="my-auto">
       <SidebarMenuItem>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -48,7 +48,7 @@ export function NavUser() {
             >
               <Avatar className="h-8 w-8 rounded-lg">
                 {/* <AvatarImage src={user.avatar} alt={user.name} /> */}
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-lg">NK</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.username}</span>
