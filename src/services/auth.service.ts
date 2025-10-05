@@ -1,10 +1,7 @@
 import apiClient from '@/lib/axios';
-import { signInSchema, signUpSchema } from '@/schemas/auth.schema';
-import { z } from 'zod';
+import { type SignInPayload, type SignUpPayload } from '@/schemas/auth.schema';
 
-type SignInPayload = z.infer<typeof signInSchema>;
-type SignUpPayload = z.infer<typeof signUpSchema>;
-
+// interfaces
 interface SignInResponse {
     status: string;
     message: string;
@@ -18,6 +15,7 @@ interface SignUpResponse {
     message: string;
 }
 
+// 
 export const signUpService = async (data: SignUpPayload): Promise<SignUpResponse> => {
     try {
         const response = await apiClient.post<SignUpResponse>('/auth/sign-up', data);
@@ -37,5 +35,4 @@ export const signInService = async (data: SignInPayload): Promise<SignInResponse
     }
 };
 
-// export const registerService = async (data: RegisterPayload) => { ... };
 // export const getProfileService = async () => { ... };

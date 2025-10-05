@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { AxiosError } from 'axios';
 
 type ApiService<T, P> = (payload: P) => Promise<T>;
@@ -23,26 +23,25 @@ export const useApi = <T, P>(service: ApiService<T, P>): UseApiReturn<T, P> => {
     const [successMessage, setSuccessMessage] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
-    const execute = async (payload: P) => {
+    const execute = useCallback(async (payload: P): Promise<ExecuteReturn<T>> => {
         setIsLoading(true);
         setError(null);
+        setSuccessMessage(null);
         try {
             const result = await service(payload);
             setData(result);
             const message = (result as any)?.message || null;
-            if (message) {
-                setSuccessMessage(message);
-            }
-            return { data: result, successMessage: message, error: null };
+            if (message) { setSuccessMessage(message); }
+            return { data: result, error: null, successMessage: message };
         } catch (err) {
             const axiosError = err as AxiosError<{ message?: string }>;
             const errorMessage = axiosError.response?.data?.message || 'an unexpected error occurred.';
             setError(errorMessage);
-            return { data: null, successMessage: null, error: errorMessage };
+            return { data: null, error: errorMessage, successMessage: null };
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [service]);
 
-    return { execute, data, successMessage, error, isLoading };
+    return { execute, data, error, isLoading, successMessage };
 };

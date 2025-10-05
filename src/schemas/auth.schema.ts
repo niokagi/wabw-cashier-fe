@@ -11,6 +11,5 @@ export const signUpSchema = z.object({
     password: z.string().min(8, "password must be at least 8 character").max(50),
 })
 
-
 export type SignInPayload = z.infer<typeof signInSchema>
 export type SignUpPayload = z.infer<typeof signUpSchema>

@@ -1,86 +1,60 @@
+import { useApi } from "@/hooks/useApi"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Skeleton } from "../ui/skeleton"
+import { getProductsService, type Product } from "@/services/products.service";
+import { useEffect } from "react";
+import { formatCurrency } from "@/utils/formatters";
 
 export default function ProductsList() {
-    const dummyData = [
-        {
-            id: 1,
-            title: "Classic Bruschetta",
-            desc: "Grilled bread topped with fresh tomatoes, garlic, basil, and a hint of balsamic glaze.",
-            price: 8.99,
-            category: "Appetizer"
-        },
-        {
-            id: 2,
-            title: "Spaghetti Carbonara",
-            desc: "A creamy pasta dish made with egg, hard cheese, cured pork, and black pepper.",
-            price: 15.50,
-            category: "Main Course"
-        },
-        {
-            id: 3,
-            title: "Grilled Ribeye Steak",
-            desc: "A 12oz prime ribeye, seasoned and grilled to perfection, served with mashed potatoes.",
-            price: 29.95,
-            category: "Main Course"
-        },
-        {
-            id: 4,
-            title: "Margherita Pizza",
-            desc: "Classic Neapolitan pizza with San Marzano tomatoes, fresh mozzarella, and basil.",
-            price: 14.00,
-            category: "Main Course"
-        },
-        {
-            id: 5,
-            title: "Lemon Herb Salmon",
-            desc: "Pan-seared salmon fillet with a lemon-dill sauce, served with quinoa and asparagus.",
-            price: 22.00,
-            category: "Main Course"
-        },
-        {
-            id: 6,
-            title: "Chicken Caesar Salad",
-            desc: "Crisp romaine lettuce, parmesan cheese, croutons, and Caesar dressing, topped with grilled chicken.",
-            price: 13.75,
-            category: "Salad"
-        },
-        {
-            id: 7,
-            title: "Chocolate Lava Cake",
-            desc: "Warm chocolate cake with a molten center, served with a scoop of vanilla ice cream.",
-            price: 9.50,
-            category: "Dessert"
-        },
-        {
-            id: 8,
-            title: "New York Cheesecake",
-            desc: "Creamy and dense cheesecake with a graham cracker crust, topped with a strawberry compote.",
-            price: 9.00,
-            category: "Dessert"
-        },
-    ]
+    const { execute: fetchProducts, data: productsResponse, isLoading, error } = useApi(getProductsService);
 
-    return (<>
-        <div className="flex flex-1 flex-col gap-4 w-full">
+    useEffect(() => {
+        fetchProducts(null);
+    }, [fetchProducts]);
+
+    if (isLoading) {
+        return (
             <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {dummyData.map(data => (
-                    <Card className="gap-3 border-none" key={data.title}>
+                {Array.from({ length: 6 }).map((_, index) => (
+                    <Card key={index}>
                         <CardHeader>
-                            <Skeleton className="h-[9rem] sm:h-[7rem] w-[100%] rounded-lg z-[0]" />
-                            <CardTitle className="mt-3">{data.title}</CardTitle>
-                            {/* <CardDescription>Card Description</CardDescription> */}
-                            {/* <CardAction>Card Action</CardAction> */}
+                            <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
+                            <Skeleton className="h-6 w-3/4 mt-3" />
                         </CardHeader>
                         <CardContent>
-                            <p className="text-xs text-gray-500 truncate">{data.desc}</p>
+                            <Skeleton className="h-4 w-full" />
                         </CardContent>
                         <CardFooter>
-                            <p>${data.price}</p>
+                            <Skeleton className="h-5 w-1/4" />
+                        </CardFooter>
+                    </Card>
+                ))}
+            </div>
+        );
+    }
+
+    if (error) {
+        return <div className="text-center text-red-500 p-8">Error: {error}</div>;
+    }
+
+    return (
+        <div className="flex flex-1 flex-col gap-4 w-full">
+            <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {productsResponse?.data.products?.map((product: Product) => (
+                    <Card key={product.id}>
+                        <CardHeader>
+                            <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
+                            <CardTitle className="mt-3 truncate">{product.name}</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="text-xs text-gray-500 truncate">Description placeholder</p>
+                        </CardContent>
+                        <CardFooter>
+                            <p className="font-semibold">{formatCurrency(Number(product.price))}</p>
                         </CardFooter>
                     </Card>
                 ))}
             </div>
         </div>
-    </>)
+    );
 }
