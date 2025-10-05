@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card
 import { Skeleton } from "../ui/skeleton"
 import { getProductsService, type Product } from "@/services/products.service";
 import { useEffect } from "react";
-import { formatCurrency } from "@/utils/formatters";
+import { formatIDR, formatUSD } from "@/utils/formatters";
 
 export default function ProductsList() {
     const { execute: fetchProducts, data: productsResponse, isLoading, error } = useApi(getProductsService);
@@ -41,16 +41,16 @@ export default function ProductsList() {
         <div className="flex flex-1 flex-col gap-4 w-full">
             <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {productsResponse?.data.products?.map((product: Product) => (
-                    <Card key={product.id}>
+                    <Card key={product.id} className="border-0 gap-3">
                         <CardHeader>
                             <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
-                            <CardTitle className="mt-3 truncate">{product.name}</CardTitle>
+                            <CardTitle className="mt-3 mb-0">{product.name}</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <p className="text-xs text-gray-500 truncate">Description placeholder</p>
                         </CardContent>
                         <CardFooter>
-                            <p className="font-semibold">{formatCurrency(Number(product.price))}</p>
+                            <p className="font-semibold">{formatIDR(Number(product.price))}</p>
                         </CardFooter>
                     </Card>
                 ))}
