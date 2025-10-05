@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card
 import { Skeleton } from "../ui/skeleton"
 import { getProductsService, type Product } from "@/services/products.service";
 import { useEffect } from "react";
-import { formatIDR, formatUSD } from "@/utils/formatters";
+import { formatIDR } from "@/utils/formatters";
 
 export default function ProductsList() {
     const { execute: fetchProducts, data: productsResponse, isLoading, error } = useApi(getProductsService);
