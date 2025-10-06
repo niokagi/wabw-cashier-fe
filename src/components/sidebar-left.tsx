@@ -9,6 +9,7 @@ import {
   Presentation,
   Settings2,
   Users,
+  Utensils,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -50,6 +51,13 @@ const data = {
       title: "Cashiers List",
       url: "#",
       icon: Users,
+      badge: "10",
+    },
+    {
+      // > admin
+      title: "Foods",
+      url: "#",
+      icon: Utensils,
       badge: "10",
     },
     {

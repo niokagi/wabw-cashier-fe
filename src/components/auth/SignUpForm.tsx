@@ -111,8 +111,10 @@ export default function SignUpForm({ className, ...props }: React.ComponentProps
                 </Form>
             </Card>
             <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-                By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
-                and <Link to="#">Privacy Policy</Link>.
+                <span>Made by Adhim Niokagi - 3124510109</span>
+                {/* <span>Made with 🖤 by Adhim Niokagi - 3124510109</span> */}
+                <br />
+                <Link to="/privacy-policy">Privacy Policy</Link>.
             </div>
         </div>
     )
