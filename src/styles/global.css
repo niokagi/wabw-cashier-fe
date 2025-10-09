@@ -121,7 +121,6 @@
 }
 
 @layer components {
-
     /* write your own components style here */
     button {
         @apply cursor-pointer;

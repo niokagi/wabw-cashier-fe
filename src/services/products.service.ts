@@ -41,7 +41,6 @@ interface GetCategoriesResponse {
 }
 
 // 
-
 export const getProductsService = async (): Promise<GetProductsResponse> => {
     const response = await apiClient.get<GetProductsResponse>('/products');
     return response.data;

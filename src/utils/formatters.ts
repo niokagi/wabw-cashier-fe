@@ -8,7 +8,6 @@ export const formatDate = (
     return format(new Date(date), formatString, { locale: id });
 };
 
-// 
 export const formatIDR = (amount: number): string => {
     return new Intl.NumberFormat('id-ID', {
         style: 'currency',
