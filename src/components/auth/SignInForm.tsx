@@ -42,7 +42,7 @@ export default function SignInForm({ className, ...props }: React.ComponentProps
             toast.error(response.error || "an unknown error occurred.");
             return;
         }
-        console.log(response);
+        // console.log(response);
 
         if (response.data && response.data.token) {
             const token = response.data.token

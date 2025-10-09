@@ -33,10 +33,25 @@ interface CreateProductResponse {
     };
 }
 
+interface GetCategoriesResponse {
+    status: 'success',
+    data: {
+        categories: string[]
+    }
+}
+
+// 
+
 export const getProductsService = async (): Promise<GetProductsResponse> => {
     const response = await apiClient.get<GetProductsResponse>('/products');
     return response.data;
 };
+
+export const getProductCategoriesService = async (): Promise<GetCategoriesResponse> => {
+    const response = await apiClient.get<GetCategoriesResponse>('/products/categories');
+    console.log(response.data);
+    return response.data;
+}
 
 export const getProductByIdService = async (id: number): Promise<GetProductResponse> => {
     const response = await apiClient.get<GetProductResponse>(`/products/${id}`);
