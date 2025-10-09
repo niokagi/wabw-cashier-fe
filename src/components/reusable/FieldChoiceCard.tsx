@@ -11,23 +11,34 @@ import {
     RadioGroup,
     RadioGroupItem,
 } from "@/components/ui/radio-group"
-import { useApi } from "@/hooks/useApi";
 import { getProductCategoriesService } from "@/services/products.service";
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Skeleton } from "../ui/skeleton";
+import { useQuery } from "@tanstack/react-query";
 
 export function FieldChoiceCard() {
     const [selectedCategory, setSelectedCategory] = useState("ALL");
     const {
-        execute: fetchCategories,
         data: categoriesResponse,
         isLoading,
-        error,
-    } = useApi(getProductCategoriesService);
+        error
+    } = useQuery({
+        queryKey: ['product-categories'],
+        queryFn: getProductCategoriesService,
+        // staleTime: 1000 * 60 * 5,
+    })
 
-    useEffect(() => {
-        fetchCategories(null);
-    }, [fetchCategories]);
+    // with custom hook
+    // const {
+    //     execute: fetchCategories,
+    //     data: categoriesResponse,
+    //     isLoading,
+    //     error,
+    // } = useApi(getProductCategoriesService);
+
+    // useEffect(() => {
+    //     fetchCategories(null);
+    // }, [fetchCategories]);
 
     const categories = categoriesResponse?.data.categories || [];
 
@@ -52,7 +63,7 @@ export function FieldChoiceCard() {
                             )}
                             {error && <p className="text-red-500">Failed to load categories.</p>}
                             {!isLoading && categories.map((category: string) => (
-                                <FieldLabel key={category} htmlFor={category.toLowerCase()}>
+                                <FieldLabel key={category} htmlFor={category.toLowerCase()} className="bg-white">
                                     <Field orientation="horizontal" className="cursor-pointer">
                                         <FieldContent>
                                             <FieldTitle>{category}</FieldTitle>
@@ -60,7 +71,7 @@ export function FieldChoiceCard() {
                                                 Category for {category.toLowerCase()} items.
                                             </FieldDescription>
                                         </FieldContent>
-                                        <RadioGroupItem value={category} id={category.toLowerCase()} hidden/>
+                                        <RadioGroupItem value={category} id={category.toLowerCase()} hidden />
                                     </Field>
                                 </FieldLabel>
                             ))}

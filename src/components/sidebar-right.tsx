@@ -46,16 +46,16 @@ export function SidebarRight({
       className="sticky top-0 hidden h-svh border-l lg:flex"
       {...props}
     >
-      <SidebarHeader className="h-20 flex items-center">
+      <SidebarHeader className="h-20 flex items-center bg-white">
         {/* <SidebarHeader className="border-sidebar-border h-16"> */}
         {/* nav user */}
         <NavUser />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="bg-white">
         <SidebarSeparator className="mx-0" />
         <Calendars calendars={data.calendars} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="bg-white">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton>

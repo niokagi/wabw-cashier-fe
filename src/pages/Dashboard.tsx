@@ -37,7 +37,7 @@ export default function Dashboard() {
                 </div>
             </header>
             {/* products list */}
-            <section className="max-w-full">
+            <section className="max-w-full bg-gray-50">
                 <FieldChoiceCard />
                 <Separator />
                 <CashierProductsList />
