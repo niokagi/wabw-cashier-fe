@@ -1,9 +1,14 @@
+import { SidebarLeft } from "@/components/sidebar-left"
+import { SidebarRight } from "@/components/sidebar-right"
+import { SidebarProvider } from "@/components/ui/sidebar"
 import { Outlet } from "react-router"
 
 export default function MainLayout() {
     return (
-        <main>
+        <SidebarProvider>
+            <SidebarLeft />
             <Outlet />
-        </main>
+            <SidebarRight />
+        </SidebarProvider>
     )
 }

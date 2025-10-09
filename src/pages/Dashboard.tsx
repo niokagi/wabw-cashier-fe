@@ -1,8 +1,6 @@
-import ProductsList from "@/components/common/ProductsList"
+import CashierProductsList from "@/components/cashier/CashierProductsList"
 import SearchBar from "@/components/common/SearchBar"
 import { FieldChoiceCard } from "@/components/reusable/FieldChoiceCard"
-import { SidebarLeft } from "@/components/sidebar-left"
-import { SidebarRight } from "@/components/sidebar-right"
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -12,44 +10,39 @@ import {
 import { Separator } from "@/components/ui/separator"
 import {
     SidebarInset,
-    SidebarProvider,
     SidebarTrigger,
 } from "@/components/ui/sidebar"
 
 export default function Dashboard() {
     return (
-        <SidebarProvider>
-            <SidebarLeft />
-            <SidebarInset>
-                <header className="bg-background sticky top-0 flex h-20 shrink-0 items-center gap-2 z-10 shadow-xs">
-                    <div className="flex flex-1 items-center gap-2 px-3">
-                        <SidebarTrigger />
-                        <Separator
-                            orientation="vertical"
-                            className="mr-2 data-[orientation=vertical]:h-4"
-                        />
-                        <Breadcrumb>
-                            <BreadcrumbList>
-                                <BreadcrumbItem>
-                                    <BreadcrumbPage>
-                                        {/*  */}
-                                        <SearchBar />
-                                        {/*  */}
-                                    </BreadcrumbPage>
-                                </BreadcrumbItem>
-                            </BreadcrumbList>
-                        </Breadcrumb>
-                    </div>
-                </header>
-                {/* products list */}
-                <section className="max-w-full">
-                    <FieldChoiceCard />
-                    <Separator />
-                    <ProductsList />
-                </section>
-                {/*  */}
-            </SidebarInset>
-            <SidebarRight />
-        </SidebarProvider>
+        <SidebarInset>
+            <header className="bg-background sticky top-0 flex h-20 shrink-0 items-center gap-2 z-10 shadow-xs">
+                <div className="flex flex-1 items-center gap-2 px-3">
+                    <SidebarTrigger />
+                    <Separator
+                        orientation="vertical"
+                        className="mr-2 data-[orientation=vertical]:h-4"
+                    />
+                    <Breadcrumb>
+                        <BreadcrumbList>
+                            <BreadcrumbItem>
+                                <BreadcrumbPage>
+                                    {/*  */}
+                                    <SearchBar />
+                                    {/*  */}
+                                </BreadcrumbPage>
+                            </BreadcrumbItem>
+                        </BreadcrumbList>
+                    </Breadcrumb>
+                </div>
+            </header>
+            {/* products list */}
+            <section className="max-w-full">
+                <FieldChoiceCard />
+                <Separator />
+                <CashierProductsList />
+            </section>
+            {/*  */}
+        </SidebarInset>
     )
 }

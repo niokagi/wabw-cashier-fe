@@ -23,12 +23,11 @@ export const formatUSD = (amount: number): string => {
     }).format(amount);
 };
 
-// case
+// words formatter
 export const toPascalCase = (str: string | null | undefined): string => {
     if (!str) {
         return '';
     }
-
     return str
         .replace(/[-_]+/g, ' ')
         .replace(/\w\S*/g, (word) =>

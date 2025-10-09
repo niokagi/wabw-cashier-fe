@@ -1,3 +1,4 @@
+// carts component
 import * as React from "react"
 import { Plus } from "lucide-react"
 
@@ -14,7 +15,6 @@ import {
   SidebarSeparator,
 } from "@/components/ui/sidebar"
 
-// This is sample data.
 const data = {
   user: {
     name: "shadcn",

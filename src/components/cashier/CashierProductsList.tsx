@@ -1,16 +1,18 @@
-import { useApi } from "@/hooks/useApi"
+import { useQuery } from '@tanstack/react-query'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Skeleton } from "../ui/skeleton"
-import { getProductsService, type Product } from "@/services/products.service";
-import { useEffect } from "react";
-import { formatIDR } from "@/utils/formatters";
+import { getProductsService, type Product } from "@/services/products.service"
+import { formatIDR } from "@/utils/formatters"
 
-export default function ProductsList() {
-    const { execute: fetchProducts, data: productsResponse, isLoading, error } = useApi(getProductsService);
-
-    useEffect(() => {
-        fetchProducts(null);
-    }, [fetchProducts]);
+export default function CashierProductsList() {
+    const {
+        data: productsResponse,
+        isLoading,
+        error
+    } = useQuery({
+        queryKey: ['products'],
+        queryFn: getProductsService,
+    });
 
     if (isLoading) {
         return (
@@ -34,13 +36,15 @@ export default function ProductsList() {
     }
 
     if (error) {
-        return <div className="text-center text-red-500 p-8">Error: {error}</div>;
+        return <div className="text-center text-red-500 p-8">Error: {error.message}</div>;
     }
+
+    const products = productsResponse?.data.products || [];
 
     return (
         <div className="flex flex-1 flex-col gap-4 w-full">
             <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {productsResponse?.data.products?.map((product: Product) => (
+                {products.map((product: Product) => (
                     <Card key={product.id} className="border-0 gap-3">
                         <CardHeader>
                             <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />

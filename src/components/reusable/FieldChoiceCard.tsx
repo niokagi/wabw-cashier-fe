@@ -55,12 +55,12 @@ export function FieldChoiceCard() {
                                 <FieldLabel key={category} htmlFor={category.toLowerCase()}>
                                     <Field orientation="horizontal" className="cursor-pointer">
                                         <FieldContent>
-                                            <FieldTitle>{category.toLocaleUpperCase()}</FieldTitle>
+                                            <FieldTitle>{category}</FieldTitle>
                                             <FieldDescription>
                                                 Category for {category.toLowerCase()} items.
                                             </FieldDescription>
                                         </FieldContent>
-                                        <RadioGroupItem value={category} id={category.toLowerCase()} />
+                                        <RadioGroupItem value={category} id={category.toLowerCase()} hidden/>
                                     </Field>
                                 </FieldLabel>
                             ))}
