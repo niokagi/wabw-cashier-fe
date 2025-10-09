@@ -22,3 +22,8 @@ export const formatUSD = (amount: number): string => {
         currency: 'USD',
     }).format(amount);
 };
+
+// case
+export const toPascalCase(str: string){
+    return str.toLowerCase().replace('/(?:^|\s|_|\-)(\w)/g', (_, c) => )
+}
