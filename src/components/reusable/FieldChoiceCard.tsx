@@ -30,7 +30,6 @@ export function FieldChoiceCard() {
     }, [fetchCategories]);
 
     const categories = categoriesResponse?.data.categories || [];
-    console.log(categories);
 
     const handleCheck = (value: string) => {
         // console.log("Category selected:", value);
@@ -38,7 +37,6 @@ export function FieldChoiceCard() {
     }
 
     return (
-
         <>
             <h1 className="text-lg font-semibold px-7 py-3 pt-7">Categories</h1>
             <div className="w-full max-w-full pb-7 sm:p-7 sm:pt-0 grid gap-3 overflow-hidden overflow-x-scroll sm:overflow-auto sm:overflow-x-auto">
@@ -47,6 +45,7 @@ export function FieldChoiceCard() {
                         <RadioGroup onValueChange={handleCheck} value={selectedCategory} defaultValue="kubernetes" className="flex justify-center gap-4 px-5 sm:px-0">
                             {isLoading && (
                                 <>
+                                    <Skeleton className="h-24 w-full rounded-lg" />
                                     <Skeleton className="h-24 w-full rounded-lg" />
                                     <Skeleton className="h-24 w-full rounded-lg" />
                                 </>

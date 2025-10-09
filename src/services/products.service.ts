@@ -49,7 +49,6 @@ export const getProductsService = async (): Promise<GetProductsResponse> => {
 
 export const getProductCategoriesService = async (): Promise<GetCategoriesResponse> => {
     const response = await apiClient.get<GetCategoriesResponse>('/products/categories');
-    console.log(response.data);
     return response.data;
 }
 
