@@ -4,7 +4,6 @@ import { useAuth } from "@/contexts/AuthContext"
 import {
   BadgeCheck,
   Bell,
-  CreditCard,
   LogOut,
 } from "lucide-react"
 
