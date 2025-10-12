@@ -36,13 +36,11 @@ export default function Dashboard() {
                     </Breadcrumb>
                 </div>
             </header>
-            {/* products list */}
             <section className="max-w-full bg-gray-50">
                 <FieldChoiceCard />
                 <Separator />
                 <CashierProductsList />
             </section>
-            {/*  */}
         </SidebarInset>
     )
 }
