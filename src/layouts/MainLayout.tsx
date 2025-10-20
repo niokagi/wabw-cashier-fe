@@ -1,14 +1,14 @@
-import { SidebarLeft } from "@/components/sidebar-left"
-import { OrderDetailsSidebar } from "@/components/cashier/OrderDetailsSidebar"
+import { SidebarMenu } from "@/components/common/SidebarMenu"
+import { OrderDetailsSidebar } from "@/components/order/OrderDetailsSidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { Outlet } from "react-router"
 
 export default function MainLayout() {
     return (
         <SidebarProvider>
-            <SidebarLeft />
+            <SidebarMenu />
             <Outlet />
-            <OrderDetailsSidebar />
+            {/* moved to ordermenu.tsx/component */}
         </SidebarProvider>
     )
 }

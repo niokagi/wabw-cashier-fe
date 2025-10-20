@@ -1,4 +1,3 @@
-import * as React from "react"
 import {
   BookText,
   Command,
@@ -12,20 +11,7 @@ import {
   Utensils,
 } from "lucide-react"
 
-import { NavMain } from "@/components/nav-main"
-// import { NavSecondary } from "@/components/nav-secondary"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarHeader,
-  SidebarRail,
-} from "@/components/ui/sidebar"
-import { NavSecondary } from "./nav-secondary"
-import { Separator } from "@radix-ui/react-separator"
-// import { NavWorkspaces } from "./nav-workspaces"
-
-// This is sample data.
-const data = {
+export const sidebarMenuData = {
   teams: [
     {
       name: "Nio Cashier",
@@ -110,29 +96,4 @@ const data = {
       ],
     },
   ],
-}
-
-export function SidebarLeft({
-  ...props
-}: React.ComponentProps<typeof Sidebar>) {
-  return (
-    <Sidebar className="border-r-0 z-20 " {...props}>
-      <SidebarHeader className="pt-6 bg-white">
-        {/* <TeamSwitcher teams={data.teams} /> */}
-        <div className="flex gap-2 items-center sm:justify-center px-2">
-          <span className="truncate font-medium text-[1.05rem]">{"< "}{data.teams[0].name}{" />"}</span>
-        </div>
-        <Separator  />
-        <Separator  />
-        <Separator  />
-        <NavMain items={data.navMain} />
-      </SidebarHeader>
-      <SidebarContent className="bg-white">
-        {/* <NavFavorites favorites={data.favorites} /> */}
-        {/* <NavWorkspaces workspaces={data.workspaces} /> */}
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
-      </SidebarContent>
-      <SidebarRail />
-    </Sidebar>
-  )
 }

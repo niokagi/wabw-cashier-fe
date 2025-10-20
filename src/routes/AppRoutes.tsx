@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router"
 import MainLayout from "@/layouts/MainLayout"
-import Dashboard from "@/pages/Dashboard"
 import AuthLayout from "@/layouts/AuthLayout"
 import SignIn from "@/pages/auth/SignIn"
 import SignUp from "@/pages/auth/SignUp"
 import ProtectedRoutes from "./ProtectedRoutes"
 import PublicRoute from "./PublicRoute"
+import OrderMenu from "@/pages/OrderMenu"
 
 export default function AppRoutes() {
     return (
@@ -13,7 +13,8 @@ export default function AppRoutes() {
             <Routes>
                 <Route element={<ProtectedRoutes />} >
                     <Route path="/" element={<MainLayout />}>
-                        <Route index element={<Dashboard />} />
+                        <Route index element={<OrderMenu />} />
+                        {/* dapat diisi untuk komponen halaman/page lainnya namun dengan pengecualian tidak ada sidebar kanan, yg saya hapus dari mainlayout */}
                     </Route>
                 </Route>
                 <Route element={<PublicRoute />}>

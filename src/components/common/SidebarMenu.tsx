@@ -1,0 +1,39 @@
+import * as React from "react"
+
+import { NavMain } from "@/components/nav-main"
+// import { NavSecondary } from "@/components/nav-secondary"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarHeader,
+  SidebarRail,
+} from "@/components/ui/sidebar"
+import { NavSecondary } from "../nav-secondary"
+import { Separator } from "@radix-ui/react-separator"
+import { sidebarMenuData } from "@/data/sidebar-menu-data"
+// import { NavWorkspaces } from "./nav-workspaces"
+
+export function SidebarMenu({
+  ...props
+}: React.ComponentProps<typeof Sidebar>) {
+  return (
+    <Sidebar className="border-r-0 z-20 " {...props}>
+      <SidebarHeader className="pt-6 bg-white">
+        {/* <TeamSwitcher teams={sidebarMenuData.teams} /> */}
+        <div className="flex gap-2 items-center sm:justify-center px-2">
+          <span className="truncate font-medium text-[1.05rem]">{"< "}{sidebarMenuData.teams[0].name}{" />"}</span>
+        </div>
+        <Separator  />
+        <Separator  />
+        <Separator  />
+        <NavMain items={sidebarMenuData.navMain} />
+      </SidebarHeader>
+      <SidebarContent className="bg-white">
+        {/* <NavFavorites favorites={sidebarMenuData.favorites} /> */}
+        {/* <NavWorkspaces workspaces={sidebarMenuData.workspaces} /> */}
+        <NavSecondary items={sidebarMenuData.navSecondary} className="mt-auto" />
+      </SidebarContent>
+      <SidebarRail />
+    </Sidebar>
+  )
+}
