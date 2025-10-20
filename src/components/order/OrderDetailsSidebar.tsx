@@ -16,6 +16,7 @@ import {
 } from '@/components/ui/sidebar';
 import { formatIDR } from '@/utils/formatters';
 
+// 
 interface CartItem {
   id: number;
   name: string;
@@ -32,6 +33,7 @@ interface OrderDetailsSidebarProps extends React.ComponentProps<typeof Sidebar> 
   isCreatingOrder: boolean;
   totalAmount: number;
 }
+// 
 
 export function OrderDetailsSidebar({
   cart,
@@ -60,15 +62,14 @@ export function OrderDetailsSidebar({
   return (
     <Sidebar
       collapsible="none"
-      className="sticky top-0 hidden h-svh w-80 border-l lg:flex flex-col"
+      className="sticky top-0 hidden h-svh w-72 border-l lg:flex flex-col"
       {...props}
     >
-      <SidebarHeader className="h-20 flex items-center border-b">
+      <SidebarHeader className="h-20 flex items-center border-b bg-white">
         <NavUser />
       </SidebarHeader>
-
-      {/* item list in cart */}
-      <SidebarContent className="flex-1 overflow-hidden p-0">
+      {/* itemlist */}
+      <SidebarContent className="flex-1 overflow-hidden p-0 bg-white">
         <ScrollArea className="h-full p-4">
           <h2 className="text-lg font-semibold mb-4">Current Order</h2>
           {cart.length === 0 ? (
@@ -87,12 +88,11 @@ export function OrderDetailsSidebar({
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
-                  {/* Info Item */}
+                  {/* Item info */}
                   <div className="flex-1">
                     <p className="text-sm font-medium leading-tight truncate">
                       {item.name}
                     </p>
-                    {/* quantitiy */}
                     <div className="flex items-center gap-1 mt-1">
                       <Button
                         variant="outline"
@@ -125,9 +125,7 @@ export function OrderDetailsSidebar({
           )}
         </ScrollArea>
       </SidebarContent>
-
-      {/* Footer: Input, Total, dan Tombol Bayar */}
-      <SidebarFooter className="p-4 border-t mt-auto">
+      <SidebarFooter className="p-4 border-t mt-auto bg-white">
         <div className="space-y-4">
           <Input
             placeholder="Customer Name (optional)"
@@ -141,8 +139,7 @@ export function OrderDetailsSidebar({
             <SelectContent>
               <SelectItem value="CASH">Cash</SelectItem>
               <SelectItem value="QRIS">QRIS</SelectItem>
-              <SelectItem value="DEBIT_CARD">Debit Card</SelectItem>
-              {/* Tambahkan metode lain jika perlu */}
+              {/* <SelectItem value="DEBIT_CARD">Debit Card</SelectItem> */}
             </SelectContent>
           </Select>
           <Separator />

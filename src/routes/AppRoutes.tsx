@@ -5,7 +5,7 @@ import SignIn from "@/pages/auth/SignIn"
 import SignUp from "@/pages/auth/SignUp"
 import ProtectedRoutes from "./ProtectedRoutes"
 import PublicRoute from "./PublicRoute"
-import OrderMenu from "@/pages/OrderMenu"
+import CashierPage from "@/pages/CashierPage"
 
 export default function AppRoutes() {
     return (
@@ -13,7 +13,7 @@ export default function AppRoutes() {
             <Routes>
                 <Route element={<ProtectedRoutes />} >
                     <Route path="/" element={<MainLayout />}>
-                        <Route index element={<OrderMenu />} />
+                        <Route index element={<CashierPage />} />
                         {/* dapat diisi untuk komponen halaman/page lainnya namun dengan pengecualian tidak ada sidebar kanan, yg saya hapus dari mainlayout */}
                     </Route>
                 </Route>
