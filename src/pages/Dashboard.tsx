@@ -40,6 +40,7 @@ export default function Dashboard() {
                 <FieldChoiceCard />
                 <Separator />
                 <CashierProductsList />
+                {/* footer for inside menu (soon) */}
             </section>
         </SidebarInset>
     )

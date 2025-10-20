@@ -37,7 +37,7 @@ const data = {
   ],
 }
 
-export function SidebarRight({
+export function OrderDetailsSidebar({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   return (

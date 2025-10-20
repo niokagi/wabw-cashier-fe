@@ -1,5 +1,5 @@
 import { SidebarLeft } from "@/components/sidebar-left"
-import { SidebarRight } from "@/components/sidebar-right"
+import { OrderDetailsSidebar } from "@/components/cashier/OrderDetailsSidebar"
 import { SidebarProvider } from "@/components/ui/sidebar"
 import { Outlet } from "react-router"
 
@@ -8,7 +8,7 @@ export default function MainLayout() {
         <SidebarProvider>
             <SidebarLeft />
             <Outlet />
-            <SidebarRight />
+            <OrderDetailsSidebar />
         </SidebarProvider>
     )
 }
