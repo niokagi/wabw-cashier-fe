@@ -2,7 +2,8 @@ import type { ProductPayload } from './../schemas/products.schema';
 import apiClient from '@/lib/axios';
 
 export interface Product {
-    id: number;
+    // id: number;
+    id: string;
     name: string;
     price: string;
     category: 'FOOD' | 'BEVERAGE' | 'DESSERT';
@@ -29,7 +30,8 @@ interface CreateProductResponse {
     status: 'success';
     message: string;
     data: {
-        productId: number;
+        // productId: number;
+        productId: string;
     };
 }
 
