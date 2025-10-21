@@ -17,7 +17,7 @@ export function SidebarMenu({
   ...props
 }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="border-r-0 z-20 " {...props}>
+    <Sidebar className="border-r-0 z-20" {...props}>
       <SidebarHeader className="pt-6 bg-white">
         {/* <TeamSwitcher teams={sidebarMenuData.teams} /> */}
         <div className="flex gap-2 items-center sm:justify-center px-2">

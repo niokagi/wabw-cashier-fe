@@ -62,7 +62,7 @@ export function OrderDetailsSidebar({
   return (
     <Sidebar
       collapsible="none"
-      className="sticky top-0 hidden h-svh w-72 border-l lg:flex flex-col"
+      className="sticky top-0 hidden h-svh w-[18.5rem] border-l lg:flex flex-col"
       {...props}
     >
       <SidebarHeader className="h-20 flex items-center border-b bg-white">

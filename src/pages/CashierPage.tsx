@@ -1,17 +1,15 @@
 import { useState, useMemo } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
-
+// 
 import CashierProductsList from "@/components/order/CashierProductsList";
 import SearchBar from "@/components/common/SearchBar";
 import { FieldChoiceCard } from "@/components/reusable/FieldChoiceCard";
 import { OrderDetailsSidebar } from "@/components/order/OrderDetailsSidebar";
-
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 // import { Button } from "@/components/ui/button"; // Impor Button
-
 import { getProductsService, type Product } from "@/services/products.service";
 import { createOrderService } from '@/services/orders.service';
 
@@ -129,6 +127,7 @@ export default function CashierPage() {
                     />
                 </section>
             </SidebarInset>
+            {/* left sdbr */}
             <OrderDetailsSidebar
                 cart={cart}
                 handleUpdateQuantity={handleUpdateQuantity}
