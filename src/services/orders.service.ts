@@ -1,7 +1,7 @@
 import apiClient from "@/lib/axios";
 
 interface OrderItemPayload {
-    productId: number;
+    productId: string;
     quantity: number;
 }
 
@@ -11,12 +11,11 @@ export interface CreateOrderPayload {
     paymentMethod: string;
 }
 
-// Interface for the expected SUCCESS response FROM the backend
 interface CreateOrderResponse {
-    status: string; // Should be 'success'
+    status: string;
     message: string;
     data: {
-        orderId: number; // Backend returns the ID of the created order
+        orderId: string;
     };
 }
 

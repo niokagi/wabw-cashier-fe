@@ -6,7 +6,7 @@ export interface Product {
     id: string;
     name: string;
     price: string;
-    category: 'FOOD' | 'BEVERAGE' | 'DESSERT';
+    category: 'Food' | 'Beverage' | 'Dessert';
     stock: number;
     created_at: string;
     updated_at: string;

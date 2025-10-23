@@ -18,7 +18,7 @@ import { formatIDR } from '@/utils/formatters';
 
 // 
 interface CartItem {
-  id: number;
+  id: string;
   name: string;
   price: string;
   stock: number;
@@ -27,8 +27,8 @@ interface CartItem {
 
 interface OrderDetailsSidebarProps extends React.ComponentProps<typeof Sidebar> {
   cart: CartItem[];
-  handleUpdateQuantity: (productId: number, newQuantity: number) => void;
-  handleRemoveItem: (productId: number) => void;
+  handleUpdateQuantity: (productId: string, newQuantity: number) => void;
+  handleRemoveItem: (productId: string) => void;
   handleSubmitOrder: (customerName: string, paymentMethod: string) => void;
   isCreatingOrder: boolean;
   totalAmount: number;

@@ -59,7 +59,7 @@ export default function CashierPage() {
         });
     };
 
-    const handleUpdateQuantity = (productId: number, newQuantity: number) => {
+    const handleUpdateQuantity = (productId: string, newQuantity: number) => {
         const productInCart = cart.find(item => item.id === productId);
         if (!productInCart) return;
 
@@ -78,7 +78,7 @@ export default function CashierPage() {
         });
     };
 
-    const handleRemoveItem = (productId: number) => {
+    const handleRemoveItem = (productId: string) => {
         setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
     };
 
