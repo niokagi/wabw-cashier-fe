@@ -45,7 +45,7 @@ export default function SignInForm({ className, ...props }: React.ComponentProps
         // console.log(response);
 
         if (response.data && response.data.token) {
-            const token = response.data.token
+            const token = response.data.token;
             if (response.successMessage) {
                 toast.success(response.successMessage)
             }
@@ -115,7 +115,6 @@ export default function SignInForm({ className, ...props }: React.ComponentProps
             </Card>
             <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
                 <span>Made by Adhim Niokagi - 3124510109</span>
-                {/* <span>Made with 🖤 by Adhim Niokagi - 3124510109</span> */}
                 <br />
                 <Link to="/privacy-policy">Privacy Policy</Link>.
             </div>
