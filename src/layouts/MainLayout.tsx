@@ -8,7 +8,7 @@ export default function MainLayout() {
         <SidebarProvider>
             <SidebarMenu />
             <Outlet />
-            {/* moved to ordermenu.tsx/component */}
+            {/* moved to ordermenu.tsx/component, for usability */}
         </SidebarProvider>
     )
 }

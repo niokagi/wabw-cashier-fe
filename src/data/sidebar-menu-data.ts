@@ -19,6 +19,7 @@ export const sidebarMenuData = {
       plan: "Enterprise",
     },
   ],
+  // add url
   navMain: [
     {
       title: "Menu",
@@ -27,16 +28,9 @@ export const sidebarMenuData = {
       isActive: true,
     },
     {
-      title: "Dashboard (data master)",
+      title: "Dashboard",
       url: "#",
       icon: Inbox,
-      badge: "10",
-    },
-    {
-      // > admin
-      title: "Cashiers List",
-      url: "#",
-      icon: Users,
       badge: "10",
     },
     {
@@ -48,12 +42,20 @@ export const sidebarMenuData = {
     },
     {
       // > admin
+      title: "Cashiers",
+      url: "#",
+      icon: Users,
+      badge: "10",
+    },
+    {
+      // > admin
       title: "Reports",
       url: "#",
       icon: FileText,
       badge: "10",
     },
   ],
+  // bottom
   navSecondary: [
     {
       title: "Settings",

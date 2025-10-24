@@ -14,7 +14,6 @@ export default function AppRoutes() {
                 <Route element={<ProtectedRoutes />} >
                     <Route path="/" element={<MainLayout />}>
                         <Route index element={<CashierPage />} />
-                        {/* dapat diisi untuk komponen halaman/page lainnya namun dengan pengecualian tidak ada sidebar kanan, yg saya hapus dari mainlayout */}
                     </Route>
                 </Route>
                 <Route element={<PublicRoute />}>
