@@ -9,20 +9,11 @@ import type { ReactNode } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
 interface User {
+    // sync w backend jwt schema/payload
     sub: string;
     username: string;
     email: string;
     role: string;
-    // -------------
-    // id: string;
-    // username: string;
-    // email: string;
-    // -------------
-    // best practice:
-    // sub: string
-    // email: string
-    // username: string
-    // role: string
 }
 
 interface AuthContextType {

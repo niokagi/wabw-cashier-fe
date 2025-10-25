@@ -8,7 +8,7 @@ export default function PublicRoute() {
     }
     
     if (isAuthenticated) {
-        return <Navigate to="/" replace />;
+        return <Navigate to="/" replace={true} />;
     }
     return <Outlet />
 }

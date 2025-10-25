@@ -14,7 +14,9 @@ export default function AppRoutes() {
                 <Route element={<ProtectedRoutes />} >
                     <Route path="/" element={<MainLayout />}>
                         <Route index element={<CashierPage />} />
+                        <Route path="dashboard" element={<CashierPage />} />
                     </Route>
+                    
                 </Route>
                 <Route element={<PublicRoute />}>
                     <Route path="/auth" element={<AuthLayout />}>

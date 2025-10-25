@@ -23,34 +23,34 @@ export const sidebarMenuData = {
   navMain: [
     {
       title: "Menu",
-      url: "#",
+      url: "/",
       icon: Home,
       isActive: true,
     },
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: Inbox,
       badge: "10",
     },
     {
       // > admin
       title: "Foods",
-      url: "#",
+      url: "/foods-detail",
       icon: Utensils,
       badge: "10",
     },
     {
       // > admin
       title: "Cashiers",
-      url: "#",
+      url: "/cashiers-detail",
       icon: Users,
       badge: "10",
     },
     {
       // > admin
       title: "Reports",
-      url: "#",
+      url: "/reports",
       icon: FileText,
       badge: "10",
     },
@@ -59,12 +59,12 @@ export const sidebarMenuData = {
   navSecondary: [
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: Settings2,
     },
     {
       title: "Help",
-      url: "#",
+      url: "/help",
       icon: MessageCircleQuestion,
     },
   ],
