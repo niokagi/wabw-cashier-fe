@@ -6,8 +6,10 @@ import { Outlet } from "react-router"
 export default function MainLayout() {
     return (
         <SidebarProvider>
+            {/* left */}
             <SidebarMenu />
             <Outlet />
+            {/* right */}
             {/* moved to ordermenu.tsx/component, for usability */}
         </SidebarProvider>
     )
