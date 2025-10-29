@@ -24,11 +24,9 @@ export function SidebarMenu({
           <span className="truncate font-medium text-[1.05rem]">{"< "}{sidebarMenuData.teams[0].name}{" />"}</span>
         </div>
         <Separator  />
-        <Separator  />
-        <Separator  />
-        <NavMain items={sidebarMenuData.navMain} />
       </SidebarHeader>
       <SidebarContent className="bg-white">
+        <NavMain items={sidebarMenuData.navMain} />
         {/* <NavFavorites favorites={sidebarMenuData.favorites} /> */}
         {/* <NavWorkspaces workspaces={sidebarMenuData.workspaces} /> */}
         <NavSecondary items={sidebarMenuData.navSecondary} className="mt-auto" />

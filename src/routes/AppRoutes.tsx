@@ -16,7 +16,6 @@ export default function AppRoutes() {
                         <Route index element={<CashierPage />} />
                         <Route path="dashboard" element={<CashierPage />} />
                     </Route>
-                    
                 </Route>
                 <Route element={<PublicRoute />}>
                     <Route path="/auth" element={<AuthLayout />}>
