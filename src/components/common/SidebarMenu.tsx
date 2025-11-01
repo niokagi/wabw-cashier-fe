@@ -11,7 +11,7 @@ import {
 import { NavSecondary } from "../nav-secondary"
 import { Separator } from "@radix-ui/react-separator"
 import { sidebarMenuData } from "@/data/sidebar-menu-data"
-// import { NavWorkspaces } from "./nav-workspaces"
+import { TeamSwitcher } from "../team-switcher"
 
 export function SidebarMenu({
   ...props
@@ -19,16 +19,15 @@ export function SidebarMenu({
   return (
     <Sidebar className="border-r-0 z-20" {...props}>
       <SidebarHeader className="pt-6 bg-white">
-        {/* <TeamSwitcher teams={sidebarMenuData.teams} /> */}
-        <div className="flex gap-2 items-center sm:justify-center px-2">
+        {/* opsional */}
+        <TeamSwitcher teams={sidebarMenuData.teams} />
+        {/* <div className="flex gap-2 items-center sm:justify-center px-2">
           <span className="truncate font-medium text-[1.05rem]">{"< "}{sidebarMenuData.teams[0].name}{" />"}</span>
-        </div>
+        </div> */}
         <Separator  />
       </SidebarHeader>
       <SidebarContent className="bg-white">
         <NavMain items={sidebarMenuData.navMain} />
-        {/* <NavFavorites favorites={sidebarMenuData.favorites} /> */}
-        {/* <NavWorkspaces workspaces={sidebarMenuData.workspaces} /> */}
         <NavSecondary items={sidebarMenuData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />

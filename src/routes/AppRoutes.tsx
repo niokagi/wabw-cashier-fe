@@ -6,6 +6,7 @@ import SignUp from "@/pages/auth/SignUp"
 import ProtectedRoutes from "./ProtectedRoutes"
 import PublicRoute from "./PublicRoute"
 import CashierPage from "@/pages/CashierPage"
+import Dashboard from "@/pages/Dashboard"
 
 export default function AppRoutes() {
     return (
@@ -14,7 +15,8 @@ export default function AppRoutes() {
                 <Route element={<ProtectedRoutes />} >
                     <Route path="/" element={<MainLayout />}>
                         <Route index element={<CashierPage />} />
-                        <Route path="dashboard" element={<CashierPage />} />
+                        <Route path="/" element={<CashierPage />} />
+                        <Route path="dashboard" element={<Dashboard />} />
                     </Route>
                 </Route>
                 <Route element={<PublicRoute />}>

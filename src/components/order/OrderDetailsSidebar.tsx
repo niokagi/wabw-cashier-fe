@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { useState } from 'react';
 import { PlusCircle, MinusCircle, Trash2, Loader2 } from 'lucide-react';
-
+// 
+import emptyBox from "../../assets/icons/empty-box.webp";
+// 
 import { NavUser } from '@/components/nav-user';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -71,11 +73,16 @@ export function OrderDetailsSidebar({
       {/* itemlist */}
       <SidebarContent className="flex-1 overflow-hidden p-0 bg-white">
         <ScrollArea className="h-full p-4">
-          <h2 className="text-lg font-semibold mb-4">Current Order</h2>
+          <h2 className="text-base font-semibold mb-4">Current Order</h2>
           {cart.length === 0 ? (
-            <p className="text-center text-sm text-muted-foreground mt-10">
-              No items added yet.
-            </p>
+            <div className="mt-16 grid gap-1">
+              <picture>
+                <img src={emptyBox} alt="" width={120} className="mx-auto opacity-25" />
+              </picture>
+              <p className="text-center text-sm text-muted-foreground ms-2">
+                No items added yet.
+              </p>
+            </div>
           ) : (
             <div className="space-y-3">
               {cart.map((item) => (
