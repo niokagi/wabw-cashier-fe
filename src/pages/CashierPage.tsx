@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
 // 
@@ -17,9 +17,42 @@ interface CartItem extends Product {
     quantity: number;
 }
 
+const CART_STORAGE_KEY = 'cashierCart';
+const CUSTOMER_STORAGE_KEY = 'cashierCustomerName';
+const PAYMENT_STORAGE_KEY = 'cashierPaymentMethod';
+
 export default function CashierPage() {
     const queryClient = useQueryClient();
-    const [cart, setCart] = useState<CartItem[]>([]);
+    const [cart, setCart] = useState<CartItem[]>(() => {
+        try {
+            const savedCart = localStorage.getItem(CART_STORAGE_KEY);
+            return savedCart ? JSON.parse(savedCart) : [];
+        } catch (error) {
+            console.error("Failed to parse cart from localStorage", error);
+            return [];
+        }
+    });
+
+    const [customerName, setCustomerName] = useState<string>(() => {
+        return localStorage.getItem(CUSTOMER_STORAGE_KEY) || "";
+    });
+
+    const [paymentMethod, setPaymentMethod] = useState<string>(() => {
+        return localStorage.getItem(PAYMENT_STORAGE_KEY) || "";
+    });
+
+    useEffect(() => {
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+    }, [cart]);
+
+    useEffect(() => {
+        localStorage.setItem(CUSTOMER_STORAGE_KEY, customerName);
+    }, [customerName]);
+
+    useEffect(() => {
+        localStorage.setItem(PAYMENT_STORAGE_KEY, paymentMethod);
+    }, [paymentMethod]);
+
     const { data: productsResponse, isLoading: isLoadingProducts, error } = useQuery({
         queryKey: ['products'],
         queryFn: getProductsService,
@@ -30,10 +63,17 @@ export default function CashierPage() {
         onSuccess: (data) => {
             toast.success(data?.message || "Transaksi berhasil dibuat!");
             setCart([]);
+            setCustomerName("");
+            setPaymentMethod("");
+            // 
+            localStorage.removeItem(CART_STORAGE_KEY);
+            localStorage.removeItem(CUSTOMER_STORAGE_KEY);
+            localStorage.removeItem(PAYMENT_STORAGE_KEY);
+
             queryClient.invalidateQueries({ queryKey: ['products'] });
         },
         onError: (error) => {
-            toast.error(error.message || "Gagal membuat transaksi.");
+            toast.error(error.message || "failed to load trx.");
         },
     });
 
@@ -86,24 +126,34 @@ export default function CashierPage() {
         return cart.reduce((total, item) => total + Number(item.price) * item.quantity, 0);
     }, [cart]);
 
-    const handleSubmitOrder = (customerName: string, paymentMethod: string) => {
+    // 
+    const handleSubmitOrder = () => {
+        if (cart.length === 0) {
+            toast.error("Cart still empty.");
+            return;
+        }
+        if (!paymentMethod) {
+            toast.error("Metode pembayaran harus dipilih.");
+            return;
+        }
+
         const orderPayload = {
             items: cart.map(item => ({ productId: item.id, quantity: item.quantity })),
             customerName: customerName || 'Walk-in Customer',
             paymentMethod,
         };
-        submitOrder(orderPayload as any);
+        submitOrder(orderPayload);
     };
 
     return (
         <>
             <SidebarInset>
                 <header className="bg-background sticky top-0 flex h-20 shrink-0 items-center gap-2 z-10 shadow-xs">
-                    <div className="flex flex-1 items-center gap-2 px-3">
+                    <div className="flex w-full items-center gap-1 px-4 lg:gap-2 lg:px-5">
                         <SidebarTrigger />
                         <Separator
                             orientation="vertical"
-                            className="mr-2 data-[orientation=vertical]:h-4"
+                            className="mx-2 data-[orientation=vertical]:h-4"
                         />
                         <Breadcrumb>
                             <BreadcrumbList>
@@ -135,6 +185,10 @@ export default function CashierPage() {
                 handleSubmitOrder={handleSubmitOrder}
                 isCreatingOrder={isCreatingOrder}
                 totalAmount={totalAmount}
+                customerName={customerName}
+                setCustomerName={setCustomerName}
+                paymentMethod={paymentMethod}
+                setPaymentMethod={setPaymentMethod}
             />
         </>
     );

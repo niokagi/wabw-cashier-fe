@@ -29,7 +29,7 @@ export function NavMain({
             <SidebarMenuButton asChild isActive={isActive}>
               <Link to={item.url}>
                 <item.icon />
-                <span>{item.title}</span>
+                <span className="text-[0.9rem] ms-1">{item.title}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>

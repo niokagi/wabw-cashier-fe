@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState } from 'react';
 import { PlusCircle, MinusCircle, Trash2, Loader2 } from 'lucide-react';
 // 
 import emptyBox from "../../assets/icons/empty-box.webp";
@@ -9,7 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Separator } from '@/components/ui/separator';
+// import { Separator } from '@/components/ui/separator';
 import {
   Sidebar,
   SidebarContent,
@@ -28,12 +27,16 @@ interface CartItem {
 }
 
 interface OrderDetailsSidebarProps extends React.ComponentProps<typeof Sidebar> {
-  cart: CartItem[];
+  cart: any[];
   handleUpdateQuantity: (productId: string, newQuantity: number) => void;
   handleRemoveItem: (productId: string) => void;
-  handleSubmitOrder: (customerName: string, paymentMethod: string) => void;
+  handleSubmitOrder: () => void;
   isCreatingOrder: boolean;
   totalAmount: number;
+  customerName: string;
+  setCustomerName: (value: string) => void;
+  paymentMethod: string;
+  setPaymentMethod: (value: string) => void;
 }
 // 
 
@@ -44,21 +47,15 @@ export function OrderDetailsSidebar({
   handleSubmitOrder,
   isCreatingOrder,
   totalAmount,
+  customerName,
+  setCustomerName,
+  paymentMethod,
+  setPaymentMethod,
   ...props
 }: OrderDetailsSidebarProps) {
-  const [customerName, setCustomerName] = useState('');
-  const [paymentMethod, setPaymentMethod] = useState('');
 
   const submitOrder = () => {
-    if (cart.length === 0) {
-      console.error("Cart is empty");
-      return;
-    }
-    if (!paymentMethod) {
-      console.error("Payment method is required");
-      return;
-    }
-    handleSubmitOrder(customerName || 'Walk-in Customer', paymentMethod);
+    handleSubmitOrder();
   };
 
   return (
@@ -97,7 +94,7 @@ export function OrderDetailsSidebar({
                   </Button>
                   {/* Item info */}
                   <div className="flex-1">
-                    <p className="text-sm font-medium leading-tight truncate">
+                    <p className="text-[0.8rem] font-medium leading-tight truncate">
                       {item.name}
                     </p>
                     <div className="flex items-center gap-1 mt-1">
@@ -109,7 +106,7 @@ export function OrderDetailsSidebar({
                       >
                         <MinusCircle className="h-3 w-3" />
                       </Button>
-                      <span className="font-bold text-sm w-4 text-center">
+                      <span className="font-normal text-sm w-4 text-center">
                         {item.quantity}
                       </span>
                       <Button
@@ -135,7 +132,7 @@ export function OrderDetailsSidebar({
       <SidebarFooter className="p-4 border-t mt-auto bg-white">
         <div className="space-y-4">
           <Input
-            placeholder="Customer Name (optional)"
+            placeholder="Customer Name"
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
           />
@@ -149,8 +146,8 @@ export function OrderDetailsSidebar({
               {/* <SelectItem value="DEBIT_CARD">Debit Card</SelectItem> */}
             </SelectContent>
           </Select>
-          <Separator />
-          <div className="flex justify-between items-center text-lg font-bold">
+          {/* <Separator /> */}
+          <div className="flex justify-between items-center text-lg font-bold mt-6">
             <span>Total:</span>
             <span>{formatIDR(totalAmount)}</span>
           </div>
