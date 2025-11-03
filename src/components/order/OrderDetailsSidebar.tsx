@@ -18,13 +18,13 @@ import {
 import { formatIDR } from '@/utils/formatters';
 
 // 
-interface CartItem {
-  id: string;
-  name: string;
-  price: string;
-  stock: number;
-  quantity: number;
-}
+// interface CartItem {
+//   id: string;
+//   name: string;
+//   price: string;
+//   stock: number;
+//   quantity: number;
+// }
 
 interface OrderDetailsSidebarProps extends React.ComponentProps<typeof Sidebar> {
   cart: any[];
@@ -69,7 +69,7 @@ export function OrderDetailsSidebar({
       </SidebarHeader>
       {/* itemlist */}
       <SidebarContent className="flex-1 overflow-hidden p-0 bg-white">
-        <ScrollArea className="h-full p-4">
+        <ScrollArea className="h-full p-4 pr-6">
           <h2 className="text-base font-semibold mb-4">Current Order</h2>
           {cart.length === 0 ? (
             <div className="mt-16 grid gap-1">
@@ -87,32 +87,32 @@ export function OrderDetailsSidebar({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-muted-foreground hover:text-destructive mt-1"
+                    className="h-8 w-5 text-destructive hover:text-destructive hover:bg-transparent mt-1"
                     onClick={() => handleRemoveItem(item.id)}
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
                   {/* Item info */}
                   <div className="flex-1">
-                    <p className="text-[0.8rem] font-medium leading-tight truncate">
+                    <p className="text-[0.8rem] font-medium leading-tight truncate w-28">
                       {item.name}
                     </p>
                     <div className="flex items-center gap-1 mt-1">
                       <Button
                         variant="outline"
                         size="icon"
-                        className="h-6 w-6"
+                        className="h-6 w-6 border-none shadow-none text-muted-foreground"
                         onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
                       >
                         <MinusCircle className="h-3 w-3" />
                       </Button>
-                      <span className="font-normal text-sm w-4 text-center">
+                      <span className="font-semibold text-sm w-4 text-center">
                         {item.quantity}
                       </span>
                       <Button
                         variant="outline"
                         size="icon"
-                        className="h-6 w-6"
+                        className="h-6 w-6 border-none shadow-none text-muted-foreground"
                         onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
                       >
                         <PlusCircle className="h-3 w-3" />
@@ -129,6 +129,7 @@ export function OrderDetailsSidebar({
           )}
         </ScrollArea>
       </SidebarContent>
+      {/* fields */}
       <SidebarFooter className="p-4 border-t mt-auto bg-white">
         <div className="space-y-4">
           <Input
@@ -136,18 +137,17 @@ export function OrderDetailsSidebar({
             value={customerName}
             onChange={(e) => setCustomerName(e.target.value)}
           />
-          <Select onValueChange={setPaymentMethod} value={paymentMethod}>
+          <Select onValueChange={setPaymentMethod} value={paymentMethod} required={true}>
             <SelectTrigger>
               <SelectValue placeholder="Select Payment Method..." />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="CASH">Cash</SelectItem>
               <SelectItem value="QRIS">QRIS</SelectItem>
-              {/* <SelectItem value="DEBIT_CARD">Debit Card</SelectItem> */}
             </SelectContent>
           </Select>
           {/* <Separator /> */}
-          <div className="flex justify-between items-center text-lg font-bold mt-6">
+          <div className="flex justify-between items-center text-base font-bold mt-6">
             <span>Total:</span>
             <span>{formatIDR(totalAmount)}</span>
           </div>

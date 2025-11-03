@@ -168,7 +168,7 @@ export default function CashierPage() {
                 </header>
                 <section className="max-w-full bg-gray-50 flex-1 overflow-y-auto">
                     <FieldChoiceCard />
-                    <Separator />
+                    {/* <Separator /> */}
                     <CashierProductsList
                         products={productsResponse?.data.products || []}
                         isLoading={isLoadingProducts}

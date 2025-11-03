@@ -14,21 +14,24 @@ interface CashierProductsListProps {
 export default function CashierProductsList({ products, isLoading, error, onAddToCart }: CashierProductsListProps) {
     if (isLoading) {
         return (
-            <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {Array.from({ length: 6 }).map((_, index) => (
-                    <Card key={index}>
-                        <CardHeader>
-                            <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
-                            <Skeleton className="h-6 w-3/4 mt-3" />
-                        </CardHeader>
-                        <CardContent>
-                            <Skeleton className="h-4 w-full" />
-                        </CardContent>
-                        <CardFooter>
-                            <Skeleton className="h-5 w-1/4" />
-                        </CardFooter>
-                    </Card>
-                ))}
+            <div>
+                <h1 className="text-lg font-semibold px-7 pt-0 mt-[-1rem]">Foodies Menu</h1>
+                <div className="product-card-container p-4 md:p-6 md:pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                    {Array.from({ length: 6 }).map((_, index) => (
+                        <Card key={index} className="border-0 gap-3">
+                            <CardHeader>
+                                <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
+                                <Skeleton className="h-6 w-3/4 mt-3" />
+                            </CardHeader>
+                            <CardContent>
+                                <Skeleton className="h-4 w-full" />
+                            </CardContent>
+                            <CardFooter>
+                                <Skeleton className="h-5 w-1/4" />
+                            </CardFooter>
+                        </Card>
+                    ))}
+                </div>
             </div>
         );
     }
@@ -41,9 +44,10 @@ export default function CashierProductsList({ products, isLoading, error, onAddT
 
     return (
         <div className="flex flex-1 flex-col gap-4 w-full">
-            <div className="product-card-container p-4 md:p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <h1 className="text-lg font-semibold px-7">Foodies Menu</h1>
+            <div className="product-card-container p-4 md:p-6 md:pt-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {products.map((product: Product) => (
-                    <Card key={product.id} onClick={() => onAddToCart(product) } className="border-0 gap-3">
+                    <Card key={product.id} onClick={() => onAddToCart(product)} className="border-0 gap-3">
                         <CardHeader>
                             <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
                             <CardTitle className="mt-3 mb-0">{product.name}</CardTitle>

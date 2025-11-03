@@ -39,8 +39,9 @@ export function TeamSwitcher({
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton className="w-fit px-1.5">
-              <div className="bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-5 items-center justify-center rounded-md">
+              <div className="bg-transparent text-foreground flex aspect-square size-5 items-center justify-center">
                 <activeTeam.logo className="size-3" />
+                {/* <ScanLine strokeWidth={2.25} /> */}
               </div>
               <span className="truncate font-medium text-base">{activeTeam.name}</span>
               <ChevronDown className="opacity-50" />

@@ -26,6 +26,7 @@ export function SidebarMenu({
         </div> */}
         <Separator  />
       </SidebarHeader>
+      {/* main */}
       <SidebarContent className="bg-white">
         <NavMain items={sidebarMenuData.navMain} />
         <NavSecondary items={sidebarMenuData.navSecondary} className="mt-auto" />

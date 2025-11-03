@@ -7,6 +7,7 @@ import ProtectedRoutes from "./ProtectedRoutes"
 import PublicRoute from "./PublicRoute"
 import CashierPage from "@/pages/CashierPage"
 import Dashboard from "@/pages/Dashboard"
+import OrdersPage from "@/pages/OrdersPage"
 
 export default function AppRoutes() {
     return (
@@ -17,6 +18,7 @@ export default function AppRoutes() {
                         <Route index element={<CashierPage />} />
                         {/* <Route path="/" element={<CashierPage />} /> */}
                         <Route path="dashboard" element={<Dashboard />} />
+                        <Route path="orders" element={<OrdersPage />} />
                     </Route>
                 </Route>
                 <Route element={<PublicRoute />}>
