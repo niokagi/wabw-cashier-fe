@@ -7,7 +7,7 @@ interface OrderItemPayload {
 
 export interface CreateOrderPayload {
     items: OrderItemPayload[];
-    customerName?: string;
+    customerName?: string;  
     paymentMethod: string;
 }
 

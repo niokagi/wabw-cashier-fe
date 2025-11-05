@@ -1,34 +1,40 @@
-// import { useQuery } from '@tanstack/react-query'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "../ui/card"
+import { Card, CardFooter, CardHeader, CardTitle } from "../ui/card"
 import { Skeleton } from "../ui/skeleton"
 import { type Product } from "@/services/products.service"
 import { formatIDR } from "@/utils/formatters"
+import { Button } from "../ui/button"
+import { Plus, Minus } from "lucide-react"
 
 interface CashierProductsListProps {
     products: Product[];
     isLoading: boolean;
     error: Error | null;
-    onAddToCart: (product: Product) => void;
+    onPlus: (product: Product) => void;
+    onMinus: (productId: string) => void;
+    getItemQuantity: (productId: string) => number;
 }
 
-export default function CashierProductsList({ products, isLoading, error, onAddToCart }: CashierProductsListProps) {
+export default function CashierProductsList({
+    products,
+    isLoading,
+    error,
+    onPlus,
+    onMinus,
+    getItemQuantity
+}: CashierProductsListProps) {
+
     if (isLoading) {
         return (
-            <div>
-                <h1 className="text-lg font-semibold px-7 pt-0 mt-[-1rem]">Foodies Menu</h1>
-                <div className="product-card-container p-4 md:p-6 md:pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                    {Array.from({ length: 6 }).map((_, index) => (
-                        <Card key={index} className="border-0 gap-3">
-                            <CardHeader>
-                                <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
-                                <Skeleton className="h-6 w-3/4 mt-3" />
-                            </CardHeader>
-                            <CardContent>
-                                <Skeleton className="h-4 w-full" />
-                            </CardContent>
-                            <CardFooter>
-                                <Skeleton className="h-5 w-1/4" />
-                            </CardFooter>
+            <div className="flex flex-col gap-4 w-full">
+                <h1 className="text-lg font-semibold px-7">Foodies Menu</h1>
+                <div className="product-card-container p-4 md:p-6 md:pt-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    {Array.from({ length: 8 }).map((_, index) => (
+                        <Card key={index} className="aspect-square flex flex-col justify-between p-3 border bg-gray-50">
+                            <Skeleton className="h-6 w-3/4 mb-2" />
+                            <div className="flex justify-between items-end">
+                                <Skeleton className="h-4 w-1/3" />
+                                <Skeleton className="h-8 w-1/3 rounded-md" />
+                            </div>
                         </Card>
                     ))}
                 </div>
@@ -40,26 +46,73 @@ export default function CashierProductsList({ products, isLoading, error, onAddT
         return <div className="text-center text-red-500 p-8">Error: {error.message}</div>;
     }
 
-    // const products = productsResponse?.data.products || [];
-
     return (
         <div className="flex flex-1 flex-col gap-4 w-full">
             <h1 className="text-lg font-semibold px-7">Foodies Menu</h1>
-            <div className="product-card-container p-4 md:p-6 md:pt-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {products.map((product: Product) => (
-                    <Card key={product.id} onClick={() => onAddToCart(product)} className="border-0 gap-3">
-                        <CardHeader>
-                            <Skeleton className="h-[9rem] sm:h-[7rem] w-full rounded-lg" />
-                            <CardTitle className="mt-3 mb-0">{product.name}</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-xs text-gray-500 truncate">Description placeholder</p>
-                        </CardContent>
-                        <CardFooter>
-                            <p className="font-semibold">{formatIDR(Number(product.price))}</p>
-                        </CardFooter>
-                    </Card>
-                ))}
+            <div className="product-card-container p-4 md:p-6 md:pt-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                {products.map((product: Product) => {
+                    const currentQuantity = getItemQuantity(product.id);
+                    const isAvailable = product.stock > 0;
+
+                    return (
+                        <Card
+                            key={product.id}
+                            className={`aspect-square flex flex-col justify-between p-3 transition-all ${!isAvailable ? 'bg-gray-100 text-muted-foreground opacity-70 cursor-not-allowed' :
+                                currentQuantity > 0 ? 'bg-secondary text-primary border-l-[3px] border-primary/50' :
+                                    'bg-white hover:bg-gray-50 border'
+                                }`}
+                        >
+                            {/* Header / Title */}
+                            <CardHeader className="p-1 flex-shrink-0">
+                                <p className={`text-xs ${currentQuantity > 0 ? 'text-primary/80' : 'text-gray-500'}`}>
+                                    {product.category}
+                                </p>
+                                <CardTitle className={`text-sm font-semibold mb-0 truncate ${currentQuantity > 0 ? 'text-primary' : 'text-gray-800'}`}>
+                                    {product.name}
+                                </CardTitle>
+                                <p className="text-base font-semibold">
+                                    {formatIDR(Number(product.price))}
+                                </p>
+                            </CardHeader>
+
+                            <CardFooter className="flex justify-between p-0">
+                                <div className="flex justify-between w-full">
+                                    {/* (-) btn */}
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="h-7 w-7 text-gray-700 border-gray-400"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onMinus(product.id);
+                                        }}
+                                        disabled={currentQuantity <= 0}
+                                    >
+                                        <Minus className="h-4 w-4" />
+                                    </Button>
+
+                                    <span className="text-base font-bold w-4 text-center">
+                                        {currentQuantity}
+                                    </span>
+
+                                    {/* (+) btn */}
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="h-7 w-7 text-gray-700 border-gray-400 hover:bg-primary/90"
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            onPlus(product);
+                                        }}
+                                        disabled={!isAvailable}
+                                    >
+                                        <Plus className="h-4 w-4" />
+                                    </Button>
+                                </div>
+                            </CardFooter>
+                        </Card>
+                    );
+                })}
             </div>
         </div>
     );

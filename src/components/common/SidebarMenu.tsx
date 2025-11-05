@@ -1,5 +1,4 @@
 import * as React from "react"
-
 import { NavMain } from "@/components/nav-main"
 // import { NavSecondary } from "@/components/nav-secondary"
 import {
@@ -28,7 +27,8 @@ export function SidebarMenu({
       </SidebarHeader>
       {/* main */}
       <SidebarContent className="bg-white">
-        <NavMain items={sidebarMenuData.navMain} />
+        {/* <NavMain items={sidebarMenuData.navMain} /> */}
+        <NavMain items={sidebarMenuData.navMain as React.ComponentProps<typeof NavMain>['items']} />
         <NavSecondary items={sidebarMenuData.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarRail />

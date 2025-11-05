@@ -4,16 +4,18 @@ import {
   Inbox,
   MessageCircleQuestion,
   Settings2,
-  Users,
-  Utensils,
+  // Users,
+  // Utensils,
   ScanLine,
-  ListOrdered
+  ListOrdered,
+  Utensils,
+  // Users
 } from "lucide-react"
 
 export const sidebarMenuData = {
   teams: [
     {
-      name: "Nio Cashier",
+      name: "N-Cashier",
       logo: ScanLine,
       plan: "Enterprise",
     },
@@ -25,40 +27,46 @@ export const sidebarMenuData = {
       url: "/",
       icon: Home,
       isActive: true,
+      requiredRole: "CASHIER",
     },
     {
       title: "Dashboard",
       url: "/dashboard",
       icon: Inbox,
-      badge: "10",
+      requiredRole: "ADMIN",
+      // badge: "10",
     },
     {
       // > admin
       title: "Orders",
       url: "/orders",
       icon: ListOrdered,
-      badge: "10",
+      requiredRole: "CASHIER",
+      // badge: "10",
     },
     {
       // > admin
       title: "Foods",
-      url: "/foods-detail",
+      url: "/products",
       icon: Utensils,
-      badge: "10",
+      requiredRole: "ADMIN",
+      // badge: "10",
     },
-    {
-      // > admin
-      title: "Cashiers",
-      url: "/cashiers-detail",
-      icon: Users,
-      badge: "10",
-    },
+    // {
+    //   // > admin
+    //   title: "Cashiers",
+    //   url: "/cashiers-detail",
+    //   icon: Users,
+    //   requiredRole: "ADMIN",
+    //   // badge: "10",
+    // },
     {
       // > admin
       title: "Reports",
       url: "/reports",
       icon: FileText,
-      badge: "10",
+      requiredRole: "ADMIN",
+      // badge: "10",
     },
   ],
   // bottom

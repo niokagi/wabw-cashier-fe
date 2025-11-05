@@ -12,12 +12,15 @@ import {
     RadioGroupItem,
 } from "@/components/ui/radio-group"
 import { getProductCategoriesService } from "@/services/products.service";
-import { useState } from "react"
 import { Skeleton } from "../ui/skeleton";
 import { useQuery } from "@tanstack/react-query";
 
-export function FieldChoiceCard() {
-    const [selectedCategory, setSelectedCategory] = useState("ALL");
+interface FieldChoiceCardProps {
+    onCategoryChange: (category: string) => void;
+    currentCategory: string;
+}
+
+export function FieldChoiceCard({ onCategoryChange, currentCategory }: FieldChoiceCardProps) {
     const {
         data: categoriesResponse,
         isLoading,
@@ -25,26 +28,13 @@ export function FieldChoiceCard() {
     } = useQuery({
         queryKey: ['product-categories'],
         queryFn: getProductCategoriesService,
-        // staleTime: 1000 * 60 * 5,
-    })
+        staleTime: 1000 * 60 * 5,
+    });
 
-    // with custom hook
-    // const {
-    //     execute: fetchCategories,
-    //     data: categoriesResponse,
-    //     isLoading,
-    //     error,
-    // } = useApi(getProductCategoriesService);
-
-    // useEffect(() => {
-    //     fetchCategories(null);
-    // }, [fetchCategories]);
-
-    const categories = categoriesResponse?.data.categories || [];
+    const categories = ["ALL", ...(categoriesResponse?.data.categories || [])];
 
     const handleCheck = (value: string) => {
-        // console.log("Category selected:", value);
-        setSelectedCategory(value);
+        onCategoryChange(value);
     }
 
     return (
@@ -53,7 +43,7 @@ export function FieldChoiceCard() {
             <div className="w-full max-w-full pb-7 sm:p-7 sm:pt-0 grid gap-3 overflow-hidden overflow-x-scroll sm:overflow-auto sm:overflow-x-auto">
                 <FieldGroup>
                     <FieldSet>
-                        <RadioGroup onValueChange={handleCheck} value={selectedCategory} defaultValue="kubernetes" className="flex justify-center gap-4 px-5 sm:px-0">
+                        <RadioGroup onValueChange={handleCheck} value={currentCategory} defaultValue="ALL" className="flex justify-center gap-4 px-5 sm:px-0">
                             {isLoading && (
                                 <>
                                     <Skeleton className="h-24 w-full rounded-lg" />
@@ -66,7 +56,7 @@ export function FieldChoiceCard() {
                                 <FieldLabel key={category} htmlFor={category.toLowerCase()} className="bg-white">
                                     <Field orientation="horizontal" className="cursor-pointer">
                                         <FieldContent>
-                                            <FieldTitle>{category}</FieldTitle>
+                                            <FieldTitle className="font-semibold">{category}</FieldTitle>
                                             <FieldDescription>
                                                 Category for {category.toLowerCase()} items.
                                             </FieldDescription>

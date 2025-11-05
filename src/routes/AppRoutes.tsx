@@ -8,6 +8,8 @@ import PublicRoute from "./PublicRoute"
 import CashierPage from "@/pages/CashierPage"
 import Dashboard from "@/pages/Dashboard"
 import OrdersPage from "@/pages/OrdersPage"
+import ReportsPage from "@/pages/ReportsPage"
+import ProductsPage from "@/pages/ProductsPage"
 
 export default function AppRoutes() {
     return (
@@ -19,6 +21,8 @@ export default function AppRoutes() {
                         {/* <Route path="/" element={<CashierPage />} /> */}
                         <Route path="dashboard" element={<Dashboard />} />
                         <Route path="orders" element={<OrdersPage />} />
+                        <Route path="products" element={<ProductsPage />} />
+                        <Route path="reports" element={<ReportsPage />} />
                     </Route>
                 </Route>
                 <Route element={<PublicRoute />}>

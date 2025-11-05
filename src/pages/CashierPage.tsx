@@ -3,13 +3,11 @@ import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
 // 
 import CashierProductsList from "@/components/order/CashierProductsList";
-import SearchBar from "@/components/common/SearchBar";
 import { FieldChoiceCard } from "@/components/reusable/FieldChoiceCard";
 import { OrderDetailsSidebar } from "@/components/order/OrderDetailsSidebar";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbList, BreadcrumbPage } from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
-// import { Button } from "@/components/ui/button"; // Impor Button
 import { getProductsService, type Product } from "@/services/products.service";
 import { createOrderService } from '@/services/orders.service';
 
@@ -23,6 +21,7 @@ const PAYMENT_STORAGE_KEY = 'cashierPaymentMethod';
 
 export default function CashierPage() {
     const queryClient = useQueryClient();
+    const [selectedCategory, setSelectedCategory] = useState("ALL");
     const [cart, setCart] = useState<CartItem[]>(() => {
         try {
             const savedCart = localStorage.getItem(CART_STORAGE_KEY);
@@ -53,11 +52,26 @@ export default function CashierPage() {
         localStorage.setItem(PAYMENT_STORAGE_KEY, paymentMethod);
     }, [paymentMethod]);
 
+    // catch
     const { data: productsResponse, isLoading: isLoadingProducts, error } = useQuery({
         queryKey: ['products'],
         queryFn: getProductsService,
     });
 
+    // category filtering
+    const filteredProducts = useMemo(() => {
+        const allProducts = productsResponse?.data.products || [];
+
+        if (selectedCategory === "ALL") {
+            return allProducts;
+        }
+
+        return allProducts.filter(product =>
+            product.category.toUpperCase() === selectedCategory.toUpperCase()
+        );
+    }, [productsResponse, selectedCategory]);
+
+    // mutate
     const { mutate: submitOrder, isPending: isCreatingOrder } = useMutation({
         mutationFn: createOrderService,
         onSuccess: (data) => {
@@ -145,6 +159,18 @@ export default function CashierPage() {
         submitOrder(orderPayload);
     };
 
+    const getItemQuantity = (productId: string) => {
+        return cart.find(item => item.id === productId)?.quantity || 0;
+    };
+    const handleOnPlus = handleAddToCart;
+
+    const handleOnMinus = (productId: string) => {
+        const productInCart = cart.find(item => item.id === productId);
+        if (!productInCart) return;
+
+        handleUpdateQuantity(productId, productInCart.quantity - 1);
+    };
+
     return (
         <>
             <SidebarInset>
@@ -159,22 +185,32 @@ export default function CashierPage() {
                             <BreadcrumbList>
                                 <BreadcrumbItem>
                                     <BreadcrumbPage>
-                                        <SearchBar />
+                                        {/* <SearchBar /> */}
+                                        <h1 className="text-base font-medium">Menu</h1>
                                     </BreadcrumbPage>
                                 </BreadcrumbItem>
                             </BreadcrumbList>
                         </Breadcrumb>
                     </div>
                 </header>
+                {/* main */}
                 <section className="max-w-full bg-gray-50 flex-1 overflow-y-auto">
-                    <FieldChoiceCard />
+                    <FieldChoiceCard
+                        onCategoryChange={setSelectedCategory}
+                        currentCategory={selectedCategory}
+                    />
                     {/* <Separator /> */}
                     <CashierProductsList
-                        products={productsResponse?.data.products || []}
+                        products={filteredProducts}
                         isLoading={isLoadingProducts}
                         error={error}
-                        onAddToCart={handleAddToCart}
+                        onPlus={handleOnPlus}
+                        onMinus={handleOnMinus}
+                        getItemQuantity={getItemQuantity}
                     />
+                    <footer className="h-14 mt-10 flex justify-center items-center bg-gray-100">
+                        <p className='text-sm'>Simple cashier web made by Adhim Niokagi - 3124510109</p>
+                    </footer>
                 </section>
             </SidebarInset>
             {/* right sdbr */}

@@ -40,7 +40,7 @@ export function TeamSwitcher({
           <DropdownMenuTrigger asChild>
             <SidebarMenuButton className="w-fit px-1.5">
               <div className="bg-transparent text-foreground flex aspect-square size-5 items-center justify-center">
-                <activeTeam.logo className="size-3" />
+                <activeTeam.logo className="size-10" />
                 {/* <ScanLine strokeWidth={2.25} /> */}
               </div>
               <span className="truncate font-medium text-base">{activeTeam.name}</span>
