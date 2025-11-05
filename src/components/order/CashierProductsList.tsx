@@ -62,7 +62,7 @@ export default function CashierProductsList({
                                     'bg-white hover:bg-gray-50 border'
                                 }`}
                         >
-                            {/* Header / Title */}
+                            {/* header */}
                             <CardHeader className="p-1 flex-shrink-0">
                                 <p className={`text-xs ${currentQuantity > 0 ? 'text-primary/80' : 'text-gray-500'}`}>
                                     {product.category}

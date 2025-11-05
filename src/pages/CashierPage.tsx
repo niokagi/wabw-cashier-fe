@@ -209,7 +209,7 @@ export default function CashierPage() {
                         getItemQuantity={getItemQuantity}
                     />
                     <footer className="h-14 mt-10 flex justify-center items-center bg-gray-100">
-                        <p className='text-sm'>Simple cashier web made by Adhim Niokagi - 3124510109</p>
+                        <p className='text-sm'>Simple cashier web made by <span className='font-semibold'>Adhim Niokagi - 3124510109</span></p>
                     </footer>
                 </section>
             </SidebarInset>
