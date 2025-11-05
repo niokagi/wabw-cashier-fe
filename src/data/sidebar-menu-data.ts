@@ -1,3 +1,4 @@
+import { IconBrandGithub, IconBrandLinkedin } from "@tabler/icons-react"
 import {
   FileText,
   Home,
@@ -17,7 +18,17 @@ export const sidebarMenuData = {
     {
       name: "N-Cashier",
       logo: ScanLine,
-      plan: "Enterprise",
+      url: "#",
+    },
+    {
+      name: "Linkedin",
+      logo: IconBrandLinkedin,
+      url: "https://www.linkedin.com/in/adhimniokagi/",
+    },
+    {
+      name: "Github",
+      logo: IconBrandGithub,
+      url: "https://github.com/niokagi",
     },
   ],
   // add url

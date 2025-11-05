@@ -10,15 +10,16 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarInset, SidebarTrigger } from "@/components/ui/sidebar";
 import { getProductsService, type Product } from "@/services/products.service";
 import { createOrderService } from '@/services/orders.service';
+import Footer from './Footer';
 
 interface CartItem extends Product {
     quantity: number;
 }
-
+// 
 const CART_STORAGE_KEY = 'cashierCart';
 const CUSTOMER_STORAGE_KEY = 'cashierCustomerName';
 const PAYMENT_STORAGE_KEY = 'cashierPaymentMethod';
-
+// 
 export default function CashierPage() {
     const queryClient = useQueryClient();
     const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -35,7 +36,6 @@ export default function CashierPage() {
     const [customerName, setCustomerName] = useState<string>(() => {
         return localStorage.getItem(CUSTOMER_STORAGE_KEY) || "";
     });
-
     const [paymentMethod, setPaymentMethod] = useState<string>(() => {
         return localStorage.getItem(PAYMENT_STORAGE_KEY) || "";
     });
@@ -43,11 +43,9 @@ export default function CashierPage() {
     useEffect(() => {
         localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
     }, [cart]);
-
     useEffect(() => {
         localStorage.setItem(CUSTOMER_STORAGE_KEY, customerName);
     }, [customerName]);
-
     useEffect(() => {
         localStorage.setItem(PAYMENT_STORAGE_KEY, paymentMethod);
     }, [paymentMethod]);
@@ -75,7 +73,7 @@ export default function CashierPage() {
     const { mutate: submitOrder, isPending: isCreatingOrder } = useMutation({
         mutationFn: createOrderService,
         onSuccess: (data) => {
-            toast.success(data?.message || "Transaksi berhasil dibuat!");
+            toast.success(data?.message || "Transaction created!");
             setCart([]);
             setCustomerName("");
             setPaymentMethod("");
@@ -92,7 +90,7 @@ export default function CashierPage() {
     });
 
     const handleAddToCart = (product: Product) => {
-        if (product.stock <= 0) {
+        if (Number(product.stock) <= 0) {
             toast.error(`Stok ${product.name} habis.`);
             return;
         }
@@ -100,7 +98,7 @@ export default function CashierPage() {
             const existingItem = prevCart.find((item) => item.id === product.id);
             if (existingItem) {
                 const newQuantity = existingItem.quantity + 1;
-                if (newQuantity > product.stock) {
+                if (newQuantity > Number(product.stock)) {
                     toast.warning(`Stok ${product.name} hanya tersisa ${product.stock}.`);
                     return prevCart;
                 }
@@ -117,9 +115,9 @@ export default function CashierPage() {
         const productInCart = cart.find(item => item.id === productId);
         if (!productInCart) return;
 
-        if (newQuantity > productInCart.stock) {
+        if (newQuantity > Number(productInCart.stock)) {
             toast.warning(`Stok ${productInCart.name} hanya tersisa ${productInCart.stock}.`);
-            newQuantity = productInCart.stock;
+            newQuantity = Number(productInCart.stock);
         }
 
         setCart((prevCart) => {
@@ -208,9 +206,7 @@ export default function CashierPage() {
                         onMinus={handleOnMinus}
                         getItemQuantity={getItemQuantity}
                     />
-                    <footer className="h-14 mt-10 flex justify-center items-center bg-gray-100">
-                        <p className='text-sm'>Simple cashier web made by <span className='font-semibold'>Adhim Niokagi - 3124510109</span></p>
-                    </footer>
+                    <Footer />
                 </section>
             </SidebarInset>
             {/* right sdbr */}

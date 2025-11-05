@@ -7,7 +7,7 @@ export interface Product {
     name: string;
     price: string;
     category: 'Food' | 'Beverage' | 'Dessert' | string;
-    stock: number;
+    stock: string;
     description?: string;
     // image_url?: string;
     created_at: string;
@@ -15,21 +15,22 @@ export interface Product {
 }
 
 interface GetProductsResponse {
-    status: 'success';
+    status: 'success' | string;
     data: {
         products: Product[];
     };
 }
 
 interface GetProductResponse {
-    status: 'success';
+    status: 'success' | string;
+    message: string;
     data: {
         product: Product;
     };
 }
 
 interface CreateProductResponse {
-    status: 'success';
+    status: 'success' | string;
     message: string;
     data: {
         productId: string;
@@ -37,23 +38,24 @@ interface CreateProductResponse {
 }
 
 interface GetCategoriesResponse {
-    status: 'success',
+    status: 'success' | string,
     data: {
         categories: string[]
     }
 }
 
 interface UpdateProductResponse {
-    status: 'success';
+    status: 'success' | string;
     message: string;
     data: {
         productId: string;
     };
 }
 
+// 
 export interface UpdateProductPayload {
-    id: string; // ID produk yang akan diupdate
-    payload: FormData; // Asumsi dikirim dalam bentuk FormData
+    id: string; 
+    payload: FormData;
 }
 
 // 
@@ -91,3 +93,4 @@ export const updateProductService = async (id: string, data: FormData): Promise<
 export const deleteProductService = async (id: string): Promise<void> => {
     await apiClient.delete(`/products/${id}`);
 };
+

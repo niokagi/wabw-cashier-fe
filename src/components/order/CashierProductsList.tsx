@@ -52,7 +52,7 @@ export default function CashierProductsList({
             <div className="product-card-container p-4 md:p-6 md:pt-0 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                 {products.map((product: Product) => {
                     const currentQuantity = getItemQuantity(product.id);
-                    const isAvailable = product.stock > 0;
+                    const isAvailable = Number(product.stock) > 0;
 
                     return (
                         <Card
@@ -65,12 +65,12 @@ export default function CashierProductsList({
                             {/* header */}
                             <CardHeader className="p-1 flex-shrink-0">
                                 <p className={`text-xs ${currentQuantity > 0 ? 'text-primary/80' : 'text-gray-500'}`}>
-                                    {product.category}
+                                    Stock: {product.stock}
                                 </p>
                                 <CardTitle className={`text-sm font-semibold mb-0 truncate ${currentQuantity > 0 ? 'text-primary' : 'text-gray-800'}`}>
                                     {product.name}
                                 </CardTitle>
-                                <p className="text-base font-semibold">
+                                <p className="text-sm font-semibold">
                                     {formatIDR(Number(product.price))}
                                 </p>
                             </CardHeader>
@@ -99,7 +99,7 @@ export default function CashierProductsList({
                                     <Button
                                         variant="outline"
                                         size="icon"
-                                        className="h-7 w-7 text-gray-700 border-gray-400 hover:bg-primary/90"
+                                        className="h-7 w-7 text-gray-700 border-gray-400"
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             onPlus(product);

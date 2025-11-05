@@ -1,14 +1,13 @@
 "use client"
 
 import * as React from "react"
-import { ChevronDown, Plus } from "lucide-react"
+import { ChevronDown } from "lucide-react"
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
@@ -17,6 +16,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { Link } from "react-router"
 
 export function TeamSwitcher({
   teams,
@@ -24,10 +24,10 @@ export function TeamSwitcher({
   teams: {
     name: string
     logo: React.ElementType
-    plan: string
+    url: string
   }[]
 }) {
-  const [activeTeam, setActiveTeam] = React.useState(teams[0])
+  const [activeTeam, _setActiveTeam] = React.useState(teams[0])
 
   if (!activeTeam) {
     return null
@@ -54,28 +54,29 @@ export function TeamSwitcher({
             sideOffset={4}
           >
             <DropdownMenuLabel className="text-muted-foreground text-xs">
-              Teams
+              Get in touch
             </DropdownMenuLabel>
             {teams.map((team, index) => (
-              <DropdownMenuItem
-                key={team.name}
-                onClick={() => setActiveTeam(team)}
-                className="gap-2 p-2"
-              >
-                <div className="flex size-6 items-center justify-center rounded-xs border">
-                  <team.logo className="size-4 shrink-0" />
-                </div>
-                {team.name}
-                <DropdownMenuShortcut>{index + 1}</DropdownMenuShortcut>
-              </DropdownMenuItem>
+              <Link to={team.url} target="_blank">
+                <DropdownMenuItem
+                  key={team.name}
+                  // onClick={() => setActiveTeam(team)}
+                  className="gap-2 p-2 cursor-pointer"
+                >
+                  <div className="flex size-6 items-center justify-center rounded-xs">
+                    <team.logo className="size-4 shrink-0" />
+                  </div>
+                  {team.name}
+                  <DropdownMenuShortcut>{index + 1}</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </Link>
             ))}
-            <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
-              <div className="bg-background flex size-6 items-center justify-center rounded-md border">
+            {/* <DropdownMenuItem className="gap-2 p-2">
+              <div className="bg-background flex size-6 items-center justify-center rounded-md">
                 <Plus className="size-4" />
               </div>
               <div className="text-muted-foreground font-medium">About</div>
-            </DropdownMenuItem>
+            </DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>

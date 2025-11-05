@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { PlusCircle, MinusCircle, Trash2, Loader2 } from 'lucide-react';
-// 
 import emptyBox from "../../assets/icons/empty-box.webp";
 // 
 import { NavUser } from '@/components/nav-user';
@@ -113,8 +112,7 @@ export function OrderDetailsSidebar({
                         variant="outline"
                         size="icon"
                         className="h-6 w-6 border-none shadow-none text-muted-foreground"
-                        onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
-                      >
+                        onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}>
                         <PlusCircle className="h-3 w-3" />
                       </Button>
                     </div>

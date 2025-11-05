@@ -9,6 +9,7 @@ import CashierPage from "@/pages/CashierPage"
 import Dashboard from "@/pages/Dashboard"
 import OrdersPage from "@/pages/OrdersPage"
 import ReportsPage from "@/pages/ReportsPage"
+import NotFound from "@/pages/NotFound"
 import ProductsPage from "@/pages/ProductsPage"
 
 export default function AppRoutes() {
@@ -32,7 +33,7 @@ export default function AppRoutes() {
                         <Route path="sign-up" element={<SignUp />} />
                     </Route>
                 </Route>
-                <Route path="*" element={<p>There's nothing here: 404!</p>} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
     )

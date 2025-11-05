@@ -56,8 +56,8 @@ export function FieldChoiceCard({ onCategoryChange, currentCategory }: FieldChoi
                                 <FieldLabel key={category} htmlFor={category.toLowerCase()} className="bg-white">
                                     <Field orientation="horizontal" className="cursor-pointer">
                                         <FieldContent>
-                                            <FieldTitle className="font-semibold">{category}</FieldTitle>
-                                            <FieldDescription>
+                                            <FieldTitle className="font-semibold text-base">{category}</FieldTitle>
+                                            <FieldDescription className="text-sm">
                                                 Category for {category.toLowerCase()} items.
                                             </FieldDescription>
                                         </FieldContent>

@@ -10,7 +10,8 @@ import {
 import { NavSecondary } from "../nav-secondary"
 import { Separator } from "@radix-ui/react-separator"
 import { sidebarMenuData } from "@/data/sidebar-menu-data"
-import { TeamSwitcher } from "../team-switcher"
+import { ScanLine } from "lucide-react"
+// import { TeamSwitcher } from "../team-switcher"
 
 export function SidebarMenu({
   ...props
@@ -19,11 +20,12 @@ export function SidebarMenu({
     <Sidebar className="border-r-0 z-20" {...props}>
       <SidebarHeader className="pt-6 bg-white">
         {/* opsional */}
-        <TeamSwitcher teams={sidebarMenuData.teams} />
-        {/* <div className="flex gap-2 items-center sm:justify-center px-2">
-          <span className="truncate font-medium text-[1.05rem]">{"< "}{sidebarMenuData.teams[0].name}{" />"}</span>
-        </div> */}
-        <Separator  />
+        {/* <TeamSwitcher teams={sidebarMenuData.teams} /> */}
+        <div className="flex mt-1 mb-2 gap-2 items-center px-2">
+          <ScanLine />
+          <span className="truncate font-medium text-[1.05rem]">{sidebarMenuData.teams[0].name}</span>
+        </div>
+        <Separator />
       </SidebarHeader>
       {/* main */}
       <SidebarContent className="bg-white">
