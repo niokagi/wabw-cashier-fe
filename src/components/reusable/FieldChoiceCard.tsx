@@ -51,6 +51,7 @@ export function FieldChoiceCard({ onCategoryChange, currentCategory }: FieldChoi
                                     <Skeleton className="h-24 w-full rounded-lg" />
                                 </>
                             )}
+                            {/* ntar posisinya disesuaiin lg (!) */}
                             {error && <p className="text-red-500">Failed to load categories.</p>}
                             {!isLoading && categories.map((category: string) => (
                                 <FieldLabel key={category} htmlFor={category.toLowerCase()} className="bg-white">

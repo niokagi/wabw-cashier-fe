@@ -12,7 +12,7 @@ export default function MainLayout() {
             <SidebarMenu />
             <Outlet />
             {/* right */}
-            {/* moved to ordermenu.tsx/component, for usability */}
+            {/* moved to cashierpage.tsx/component, for usability */}
         </SidebarProvider>
     )
 }

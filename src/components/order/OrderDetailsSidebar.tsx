@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { PlusCircle, MinusCircle, Trash2, Loader2 } from 'lucide-react';
 import emptyBox from "../../assets/icons/empty-box.webp";
-// 
 import { NavUser } from '@/components/nav-user';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -37,7 +36,6 @@ interface OrderDetailsSidebarProps extends React.ComponentProps<typeof Sidebar> 
   paymentMethod: string;
   setPaymentMethod: (value: string) => void;
 }
-// 
 
 export function OrderDetailsSidebar({
   cart,
@@ -91,7 +89,7 @@ export function OrderDetailsSidebar({
                   >
                     <Trash2 className="h-4 w-4" />
                   </Button>
-                  {/* Item info */}
+                  {/* item info */}
                   <div className="flex-1">
                     <p className="text-[0.8rem] font-medium leading-tight truncate w-28">
                       {item.name}
@@ -117,7 +115,7 @@ export function OrderDetailsSidebar({
                       </Button>
                     </div>
                   </div>
-                  {/* Subtotal Item */}
+                  {/* subtotal */}
                   <p className="text-sm font-medium w-20 text-right">
                     {formatIDR(Number(item.price) * item.quantity)}
                   </p>
