@@ -9,6 +9,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
 export function NavSecondary({
   items,
@@ -26,15 +31,22 @@ export function NavSecondary({
       <SidebarGroupContent className="mb-6">
         <SidebarMenu>
           {items.map((item) => (
-            <SidebarMenuItem key={item.title}>
-              <SidebarMenuButton asChild>
-                <a href={item.url}>
-                  <item.icon />
-                  <span>{item.title}</span>
-                </a>
-              </SidebarMenuButton>
-              {item.badge && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
-            </SidebarMenuItem>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <SidebarMenuItem key={item.title}>
+                  <SidebarMenuButton asChild>
+                    <a href={item.url}>
+                      <item.icon />
+                      <span>{item.title}</span>
+                    </a>
+                  </SidebarMenuButton>
+                  {item.badge && <SidebarMenuBadge>{item.badge}</SidebarMenuBadge>}
+                </SidebarMenuItem>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Coming soon</p>
+              </TooltipContent>
+            </Tooltip>
           ))}
         </SidebarMenu>
       </SidebarGroupContent>
