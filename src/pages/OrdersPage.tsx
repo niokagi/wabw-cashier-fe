@@ -32,11 +32,15 @@ import {
 } from "@/components/ui/alert-dialog";
 import { DataTable } from "@/components/reusable/DataTable";
 import Footer from "./Footer";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function OrdersPage() {
     const queryClient = useQueryClient();
     const [viewingOrderId, setViewingOrderId] = React.useState<string | null>(null);
     const [orderToDelete, setOrderToDelete] = React.useState<string | null>(null);
+    // get user data(role)
+    const { user } = useAuth();
+    const isAdmin = user?.role === "ADMIN" || user?.role === "SUPER_ADMIN";
 
     const { data: ordersResponse, isLoading, error } = useQuery({
         queryKey: ['orders'],
@@ -136,13 +140,15 @@ export default function OrdersPage() {
                             <DropdownMenuItem onClick={() => setViewingOrderId(order.id)} className="cursor-pointer">
                                 View Details
                             </DropdownMenuItem>
-                            <DropdownMenuItem
-                                onClick={() => handleDeleteClick(order.id)}
-                                disabled={deleteMutation.isPending && deleteMutation.variables === order.id}
-                                className="text-destructive cursor-pointer"
-                            >
-                                Delete
-                            </DropdownMenuItem>
+                            {isAdmin && (
+                                <DropdownMenuItem
+                                    onClick={() => handleDeleteClick(order.id)}
+                                    disabled={deleteMutation.isPending && deleteMutation.variables === order.id}
+                                    className="text-destructive cursor-pointer"
+                                >
+                                    Delete
+                                </DropdownMenuItem>
+                            )}
                         </DropdownMenuContent>
                     </DropdownMenu>
                 )
