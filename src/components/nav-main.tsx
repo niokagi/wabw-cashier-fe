@@ -8,6 +8,7 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
+// defining roles
 type ValidRole = 'CASHIER' | 'ADMIN' | 'SUPER_ADMIN';
 
 const ROLE_HIERARCHY: Record<ValidRole, number> = {
@@ -31,11 +32,11 @@ export function NavMain({
   const userRole = user?.role as ValidRole | undefined;
   const { pathname } = useLocation();
 
+  // filter logic
   const isAllowed = (requiredRole?: ValidRole): boolean => {
     if (!userRole) {
         return !requiredRole; 
     }
-    
     if (!requiredRole) return true; 
 
     const userLevel = ROLE_HIERARCHY[userRole] || 0;
@@ -43,7 +44,7 @@ export function NavMain({
 
     return userLevel >= requiredLevel;
   };
-
+  // applying filter
   const filteredItems = items.filter(item => isAllowed(item.requiredRole));
 
   return (

@@ -4,7 +4,6 @@ import { type ColumnDef } from "@tanstack/react-table"
 import { Loader2, MoreHorizontal } from "lucide-react";
 import { toast } from "sonner";
 import { format } from "date-fns";
-// comp's
 import { OrderDetailDrawer } from "@/components/orders/OrderDetailDrawer";
 import { SiteHeader } from "@/components/site-header";
 import { SidebarInset } from "@/components/ui/sidebar";
@@ -44,8 +43,10 @@ export default function OrdersPage() {
         queryFn: getOrdersService,
     });
 
+    // mutating
     const deleteMutation = useMutation({
         mutationFn: deleteOrderService,
+        // invalidation
         onSuccess: (_data, id) => {
             toast.success(`Order ${id.substring(0, 8)}... delete successfully.`);
             queryClient.invalidateQueries({ queryKey: ['orders'] });
@@ -67,6 +68,7 @@ export default function OrdersPage() {
         setOrderToDelete(orderId);
     };
 
+    // columns data
     const columns: ColumnDef<Order>[] = [
         {
             id: "numbering",
@@ -190,7 +192,7 @@ export default function OrdersPage() {
                 </div>
                 <Footer />
             </SidebarInset>
-            {/*  */}
+            {/* order detail */}
             <OrderDetailDrawer
                 orderId={viewingOrderId}
                 onClose={() => setViewingOrderId(null)}

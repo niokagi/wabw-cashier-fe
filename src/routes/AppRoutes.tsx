@@ -19,7 +19,6 @@ export default function AppRoutes() {
                 <Route element={<ProtectedRoutes />} >
                     <Route path="/" element={<MainLayout />}>
                         <Route index element={<CashierPage />} />
-                        {/* <Route path="/" element={<CashierPage />} /> */}
                         <Route path="dashboard" element={<Dashboard />} />
                         <Route path="orders" element={<OrdersPage />} />
                         <Route path="products" element={<ProductsPage />} />

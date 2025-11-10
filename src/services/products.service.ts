@@ -74,12 +74,6 @@ export const getProductByIdService = async (id: number): Promise<GetProductRespo
     return response.data;
 };
 
-// 
-// export const getProductTypes = async (): Promise<any> => {
-//     const response = await apiClient.get<any>('product-types');
-//     return response.data;
-// }
-
 export const createProductService = async (data: ProductPayload): Promise<CreateProductResponse> => {
     const response = await apiClient.post<CreateProductResponse>('/products', data);
     return response.data;

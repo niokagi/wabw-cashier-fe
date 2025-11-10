@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from "sonner";
-// 
 import CashierProductsList from "@/components/order/CashierProductsList";
 import { FieldChoiceCard } from "@/components/reusable/FieldChoiceCard";
 import { OrderDetailsSidebar } from "@/components/order/OrderDetailsSidebar";
@@ -77,7 +76,7 @@ export default function CashierPage() {
             setCart([]);
             setCustomerName("");
             setPaymentMethod("");
-            // 
+            
             localStorage.removeItem(CART_STORAGE_KEY);
             localStorage.removeItem(CUSTOMER_STORAGE_KEY);
             localStorage.removeItem(PAYMENT_STORAGE_KEY);
