@@ -5,7 +5,7 @@ Built for speed, backed by solid architecture.
 
 ## The Stack
 
-We don't do bloated frameworks here. This is a curated stack for developers who care about details.
+I don't do bloated frameworks here. This is a curated stack for developers who care about details.
 
 -   **Core:** React 18 (TS) + Vite.
 -   **State:** TanStack Query (React Query). Server state management done right. No more `useEffect` spaghetti.
