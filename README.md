@@ -27,12 +27,12 @@ displaying a recap of graphs and charts of sales data and product sales trends w
 ![Dashboard](./public/captures/dashboard.png)
 
 ### Products page
-halaman manajemen data produk dengan (CRUD) untuk role admin
+product data management page with (CRUD) for admin roles
 
 ![Inventory](./public/captures/product-management.png)
 
 ### Orders History page
-halaman manajemen data order/penjualan dengan (CRUD) untuk role admin dan role kasir hanya sebagi viewer
+order/sales data management page with (CRUD) for admin and cashier roles as viewers only
 
 ![Order History](./public/captures/orders-history.png)
 
