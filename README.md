@@ -70,7 +70,7 @@ halaman manajemen data order/penjualan dengan (CRUD) untuk role admin dan role k
 This frontend is nothing without its brain.
 Check out the Hapi.js + PostgreSQL monolith here:
 
-**[hapi-pgsql-boilerplate](https://github.com/niokagi/hapi-pgsql-boilerplate)**
+**[wabw-cashier-be](https://github.com/niokagi/wabw-cashier-be)**
 
 ---
 
