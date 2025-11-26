@@ -208,7 +208,7 @@ export default function CashierPage() {
                     <Footer />
                 </section>
             </SidebarInset>
-            {/* right sdbr */}
+            {/* right sdbr / cart */}
             <OrderDetailsSidebar
                 cart={cart}
                 handleUpdateQuantity={handleUpdateQuantity}

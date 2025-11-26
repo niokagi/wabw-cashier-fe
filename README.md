@@ -1,68 +1,77 @@
-# React, TS and Shadcn/ui Starter
+# Cashier web (frontend) 
 
-Starter template to kickstart your next project. Built with Vite, React, Tailwind CSS, and Shadcn/ui.
+WABW assignment web, uncompromising Point of Sale interface.
+Built for speed, backed by solid architecture.
 
-## Getting Started
+## The Stack
 
-Follow these steps to get your local development environment up and running.
+We don't do bloated frameworks here. This is a curated stack for developers who care about details.
 
-### Prerequisites
+-   **Core:** React 18 (TS) + Vite.
+-   **State:** TanStack Query (React Query). Server state management done right. No more `useEffect` spaghetti.
+-   **UI System:** Shadcn/ui + Tailwind CSS. Full control over the component code.
+-   **Forms:** React Hook Form + Zod. Type-safe validation that scales.
+-   **Auth:** Custom JWT implementation via Context API.
 
-- [Node.js](https://nodejs.org/en/) (v18.x or higher)
-- `npm`, `yarn`, or `pnpm` package manager
 
-### Installation
+## Visuals
 
-1.  **Clone the repository:**
+### Cahier menu (POS)
+Optimized for rapid transactions. Grid layout, and a persistent cart state that survives refreshes.
 
+![POS Interface](./public/captures/cashier-menu.png)
+
+### Dashboard (admin & super admin)
+displaying a recap of graphs and charts of sales data and product sales trends with a representative shadcn component library
+
+![Dashboard](./public/captures/dashboard.png)
+
+### Products page
+halaman manajemen data produk dengan (CRUD) untuk role admin
+
+![Inventory](./public/captures/product-management.png)
+
+### Orders History page
+halaman manajemen data order/penjualan dengan (CRUD) untuk role admin dan role kasir hanya sebagi viewer
+
+![Order History](./public/captures/orders-history.png)
+
+---
+
+## Quick Start
+
+1.  **Clone**
     ```bash
-    git clone https://github.com/niokagi/react-shadcn-starter.git
+    git clone [https://github.com/niokagi/nio-cashier-fe.git](https://github.com/niokagi/nio-cashier-fe.git)
+
+    cd nio-cashier-fe
     ```
 
-2.  **Navigate to the project directory:**
-
+2.  **Hydrate**
     ```bash
-    cd your-repo-name
-    ```
-
-3.  **Install dependencies:**
-
-    ```bash
-    # Using npm
     npm install
-
-    # Or using yarn
-    yarn
-
-    # Or using pnpm
-    pnpm install
     ```
 
-### Running the Development Server
+3.  **Config**
+    Create a `.env` file. Point it to your Hapi.js backend.
+    ```env
+    VITE_API_BASE_URL="http://localhost:3000"
+    ```
 
-To start the local development server, run the following command. The application will be available at `http://localhost:5173`.
+4.  **Ignite**
+    ```bash
+    npm run dev
+    ```
 
-```bash
-npm run dev
-```
+---
 
-## Available Scripts
+## The Backend of this project
 
-- `npm run dev`: Starts the development server.
-- `npm run build`: Bundles the application for production.
-  -- `npm run lint`: Lints the code using ESLint.
-- `npm run preview`: Serves the production build locally for preview.
+This frontend is nothing without its brain.
+Check out the Hapi.js + PostgreSQL monolith here:
 
-## How to Use shadcn/ui
+**[hapi-pgsql-boilerplate](https://github.com/niokagi/hapi-pgsql-boilerplate)**
 
-This starter is already configured to use shadcn/ui. To add new components, use the official `shadcn-ui` CLI.
+---
 
-**Example: Adding a new Button component**
-
-Run this command in your terminal:
-
-```bash
-npx shadcn-ui@latest add [element-name (e.g button)]
-```
-
-The CLI will automatically add the `button.jsx` file to `src/components/ui`. You can then import and use it in your application components.
+*Crafted by [niokagi](https://github.com/niokagi).*
